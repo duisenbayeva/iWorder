@@ -1,15 +1,18 @@
 <ion-header>
   <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onClickNewCatalog()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>
-      Ionic Blank
+      Catalogs
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-  <button (click)="onClickNewCatalog()" ion-button="">Add a catalog</button>
+<ul>
+  <li *ngFor="let catalog of catalogs">{{ catalog.catalogName }}</li>
+</ul>
 </ion-content>

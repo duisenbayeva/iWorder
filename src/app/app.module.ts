@@ -8,11 +8,18 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {NewCatalogPage} from "../pages/new-catalog/new-catalog";
 
+import {NewWordPage} from "../pages/new-word/new-word";
+import {CatalogPage} from "../pages/catalog/catalog";
+
+import {CatalogsService} from "../services/catalogs.service";
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    NewCatalogPage
+    NewCatalogPage,
+    NewWordPage,
+    CatalogPage
   ],
   imports: [
     BrowserModule,
@@ -22,12 +29,15 @@ import {NewCatalogPage} from "../pages/new-catalog/new-catalog";
   entryComponents: [
     MyApp,
     HomePage,
-    NewCatalogPage
+    NewCatalogPage,
+    NewWordPage,
+    CatalogPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CatalogsService
   ]
 })
 export class AppModule {}
