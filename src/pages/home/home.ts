@@ -22,4 +22,7 @@ export class HomePage {
     this.navCtrl.push(NewCatalogPage);
   }
 
+  openCatalog(catalog:{catalogName:string}){
+
+  }
 }

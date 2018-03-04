@@ -12,7 +12,9 @@
 </ion-header>
 
 <ion-content padding>
-<ul>
-  <li *ngFor="let catalog of catalogs">{{ catalog.catalogName }}</li>
-</ul>
+  <ion-list inset>
+    <button ion-item *ngFor="let catalog of catalogs" (click)="openCatalog(catalog)">
+      {{ catalog.catalogName }}
+    </button>
+  </ion-list>
 </ion-content>

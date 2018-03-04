@@ -15,6 +15,7 @@ export class NewCatalogPage {
 
   onAddCatalog(value : {catalogName : string}){
   this.catalogsService.addCatalog(value);
+  this.navCtrl.pop();
   }
 
 }
