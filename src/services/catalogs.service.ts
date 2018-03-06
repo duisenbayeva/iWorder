@@ -1,12 +1,26 @@
-export class CatalogsService{
+import {Storage} from '@ionic/storage';
+import {Injectable} from "@angular/core";
 
-  private catalogs: {catalogName : string}[]=[];
+@Injectable()
+export class CatalogsService {
 
-  addCatalog (catalog:{catalogName:string}){
-    this.catalogs.push(catalog);
+  private catalogs: { catalogName: string }[] = [];
+
+  constructor(private storage: Storage) {
   }
 
-  getCatalogs(){
-    return this.catalogs.slice();
+  addCatalog(catalog: { catalogName: string }) {
+    this.catalogs.push(catalog);
+    this.storage.set('catalogs', this.catalogs);
+  }
+
+  getCatalogs() {
+    return this.storage.get('catalogs')
+      .then(
+        (catalogs) => {
+          this.catalogs = catalogs == null ? [] : catalogs;
+          return this.catalogs.slice();
+        }
+      );
   }
 }

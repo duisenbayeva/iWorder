@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
 
@@ -9,20 +9,22 @@ import {NewCatalogPage} from "../new-catalog/new-catalog";
   templateUrl: 'home.html'
 })
 export class HomePage {
-  catalogs: {catalogName:string}[] = [];
+  catalogs: { catalogName: string }[] = [];
 
-  constructor(public navCtrl: NavController, private catalogsService : CatalogsService) {
+  constructor(public navCtrl: NavController, private catalogsService: CatalogsService) {
   }
 
-  ionViewWillEnter(){
-    this.catalogs = this.catalogsService.getCatalogs();
+  ionViewWillEnter() {
+    this.catalogsService.getCatalogs().then(
+      (catalogs) => this.catalogs = catalogs
+    );
   }
 
-  onClickNewCatalog(){
+  onClickNewCatalog() {
     this.navCtrl.push(NewCatalogPage);
   }
 
-  openCatalog(catalog:{catalogName:string}){
+  openCatalog(catalog: { catalogName: string }) {
 
   }
 }
