@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {Catalog, CatalogsService} from "../../services/catalogs.service";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
+import {CatalogPage} from "../catalog/catalog";
 
 
 @Component({
@@ -25,6 +26,7 @@ export class HomePage {
   }
 
   openCatalog(catalogName: string) {
+    this.navCtrl.push(CatalogPage, {catalogName: catalogName});
 
   }
 }

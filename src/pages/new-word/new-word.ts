@@ -1,12 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the NewWordPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -20,6 +13,7 @@ export class NewWordPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewWordPage');
+    console.log(this.navParams.get('catalogName'), this.navParams.get('wordList'));
   }
 
 }
