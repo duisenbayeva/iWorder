@@ -4,13 +4,24 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class CatalogsService {
 
-  private catalogs: { catalogName: string }[] = [];
+  private catalogs: Catalog[] = [];
 
   constructor(private storage: Storage) {
   }
 
-  addCatalog(catalog: { catalogName: string }) {
-    this.catalogs.push(catalog);
+  addCatalog(catalogName) {
+    for (let c of this.catalogs) {
+      console.log("c name=", c.catalogName['catalogName'], catalogName)
+      if (c.catalogName['catalogName'] == catalogName.catalogName) {
+        console.error("EXISTS!!!")
+        return;
+      }
+    }
+    let cat = new Catalog();
+    cat.catalogName = catalogName;
+    cat.wordList = [];
+    console.log("New catalog!")
+    this.catalogs.push(cat);
     this.storage.set('catalogs', this.catalogs);
   }
 
@@ -23,4 +34,20 @@ export class CatalogsService {
         }
       );
   }
+
+  addWordToCatalog() {
+
+  }
+}
+
+export class Word {
+  public word: string;
+  public translation: string;
+  public note: string;
+}
+
+export class Catalog {
+  public catalogName: string;
+  public wordList: Word[];
+
 }

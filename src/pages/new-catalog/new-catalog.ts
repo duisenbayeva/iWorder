@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import {CatalogsService} from "../../services/catalogs.service";
 
@@ -10,12 +10,12 @@ import {CatalogsService} from "../../services/catalogs.service";
 })
 export class NewCatalogPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private catalogsService : CatalogsService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private catalogsService: CatalogsService) {
   }
 
-  onAddCatalog(value : {catalogName : string}){
-  this.catalogsService.addCatalog(value);
-  this.navCtrl.pop();
+  onAddCatalog(value: string) {
+    this.catalogsService.addCatalog(value);
+    this.navCtrl.pop();
   }
 
 }
