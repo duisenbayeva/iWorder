@@ -8,13 +8,15 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="onAddCatalog(f.value)" #f="ngForm">
+  <ion-list>
+    <form (ngSubmit)="onAddCatalog(f.value)" #f="ngForm">
 
-    <ion-item>
-      <ion-label>Catalog Name</ion-label>
-      <ion-input type="text" name="catalogName" ngModel required></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Catalog Name</ion-label>
+        <ion-input type="text" name="catalogName" ngModel required></ion-input>
+      </ion-item>
 
-    <button ion-button block type="submit" [disabled]="!f.valid">add catalog</button>
-  </form>
+      <button ion-button block type="submit" [disabled]="!f.valid">add catalog</button>
+    </form>
+  </ion-list>
 </ion-content>

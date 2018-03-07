@@ -16,4 +16,11 @@ export class NewWordPage {
     console.log(this.navParams.get('catalogName'), this.navParams.get('wordList'));
   }
 
+  onAddWord(value) {
+    console.log("Value=", value)
+    // this.catalogsService.addCatalog(value);
+    // this.navCtrl.pop();
+  }
+
+
 }
