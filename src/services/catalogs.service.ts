@@ -35,8 +35,19 @@ export class CatalogsService {
       );
   }
 
-  addWordToCatalog() {
-
+  addWordToCatalog(word: Word) {
+    console.log("addWordToCatalog function input=", word);
+    if (word.catalog) {
+      for (let c of this.catalogs) {
+        console.log("c name=", c.catalogName)
+        if (c.catalogName['catalogName'] == word.catalog) {
+          c.wordList.push(word);
+          console.log("EXISTS!!!", c.wordList, this.catalogs);
+          this.storage.set('catalogs', this.catalogs);
+          return;
+        }
+      }
+    }
   }
 }
 
@@ -44,6 +55,15 @@ export class Word {
   public word: string;
   public translation: string;
   public note: string;
+  public catalog: string;
+
+
+  constructor(word: string, translation: string, note: string, catalog: string) {
+    this.word = word;
+    this.translation = translation;
+    this.note = note;
+    this.catalog = catalog;
+  }
 }
 
 export class Catalog {

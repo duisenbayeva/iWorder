@@ -15,8 +15,8 @@
 <ion-content padding>
   <ion-label>WORDS</ion-label>
   <ion-list inset>
-    <ion-item *ngFor="let word of words" (click)="openCatalog(catalog)">
-      {{ word.word['word'] }}
+    <ion-item *ngFor="let word of words" (click)="openWord(word)">
+      {{ word.word }}
     </ion-item>
   </ion-list>
 </ion-content>

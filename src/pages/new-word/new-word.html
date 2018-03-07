@@ -19,17 +19,17 @@
 
       <ion-item>
         <ion-label floating>New word</ion-label>
-        <ion-input type="text" name="newWord" ngModel required></ion-input>
+        <ion-input type="text" name="newWord" [(ngModel)]="word.word" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Translation</ion-label>
-        <ion-input type="text" name="translation" ngModel required></ion-input>
+        <ion-input type="text" name="translation" [(ngModel)]="word.translation" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Note</ion-label>
-        <ion-input type="text" name="note" ngModel required></ion-input>
+        <ion-input type="text" name="note" [(ngModel)]="word.note" required></ion-input>
       </ion-item>
 
       <button ion-button block type="submit" [disabled]="!f.valid">add word</button>
