@@ -13,7 +13,7 @@
 
 
 <ion-content padding>
-  <ion-label>WORDS</ion-label>
+  <ion-label *ngIf="words.length==0">WORDS</ion-label>
   <ion-list inset>
     <ion-item *ngFor="let word of words" (click)="openWord(word)">
       {{ word.word }}

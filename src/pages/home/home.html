@@ -5,16 +5,21 @@
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>
-      Catalogs
+    <ion-title text-center>
+      <div class="catalogs-title">
+        Catalogs
+      </div>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list inset>
-    <button ion-item *ngFor="let catalog of catalogs" (click)="openCatalog(catalog)">
-      {{ catalog.catalogName['catalogName'] }}
-    </button>
+  <ion-list>
+    <div class="catalog-container" *ngFor="let catalog of catalogs">
+      <div class="catalog-name">
+        {{ catalog.catalogName['catalogName'] }}
+      </div>
+      <button ion-button block class="catalog-open-btn" (click)="openCatalog(catalog)">open</button>
+    </div>
   </ion-list>
 </ion-content>
