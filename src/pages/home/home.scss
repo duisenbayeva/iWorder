@@ -11,6 +11,15 @@
 //  top: 2px;
 //}
 
+.catalog-edit {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  //background-color: blue;
+  right: 10px;
+  top: 10px;
+}
+
 .catalog-container {
   background-color: color($colors, container);
   position: relative;

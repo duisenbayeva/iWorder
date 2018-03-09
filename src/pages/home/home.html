@@ -14,14 +14,14 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-fab-list>
-      <button ion-fab (click)="onClickNewCatalog(fab)">
+      <button ion-fab (click)="createCatalog(fab)">
         <ion-icon name="add"></ion-icon>
+      </button>
+      <button ion-fab (click)="editCatalog(fab)">
+        <ion-icon name="brush"></ion-icon>
       </button>
       <button ion-fab>
         <ion-icon name="trash"></ion-icon>
-      </button>
-      <button ion-fab>
-        <ion-icon name="brush"></ion-icon>
       </button>
       <button ion-fab>
         <ion-icon name="game-controller-a"></ion-icon>
@@ -30,6 +30,11 @@
   </ion-fab>
   <ion-list>
     <div class="catalog-container" *ngFor="let catalog of catalogs">
+      <div (click)="openEdit(catalog)" *ngIf="editMode" class="catalog-edit">
+        <button>
+          <ion-icon name="brush"></ion-icon>
+        </button>
+      </div>
       <div class="catalog-name">
         {{ catalog.catalogName['catalogName'] }}
       </div>
