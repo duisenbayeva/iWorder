@@ -34,14 +34,20 @@ export class CatalogsService {
   }
 
   editCatalog(catalogName, newName) {
+    let catalogExist = false;
     for (let c of this.catalogs) {
       console.log("c name=", c.catalogName['catalogName'], catalogName)
       if (c.catalogName['catalogName'] == catalogName) {
         c.catalogName['catalogName'] = newName;
         console.log("Found!!!")
+        catalogExist = true;
         this.storage.set('catalogs', this.catalogs);
         return;
       }
+    }
+    if (!catalogExist) {
+      console.log("Catalog do not exist error");
+      return;
     }
   }
 
@@ -73,27 +79,28 @@ export class CatalogsService {
   }
 
   editWord(word: Word, newWord: Word) {
-    console.log("addWordToCatalog function input=", word);
+    console.log("editWord function input=", word, newWord, this.catalogs);
     let wordExist = false;
     if (word.catalog) {
       for (let c of this.catalogs) {
         console.log("c name=", c.catalogName)
         if (c.catalogName['catalogName'] == word.catalog) {
+          let index = 0;
           for (let w of c.wordList) {
             console.log("w=", w.word);
             if (w.word == word.word) {
               wordExist = true;
-              console.log("word exists")
-              break;
+              c.wordList[index] = newWord;
+              console.log("word exists, going to change now", w, this.catalogs);
+              this.storage.set('catalogs', this.catalogs);
+              return;
             }
+            index++;
           }
           if (!wordExist) {
-            c.wordList.push(word);
-            console.log("WORD was added", c.wordList, this.catalogs);
-            this.storage.set('catalogs', this.catalogs);
+            console.log("WORD do not exist! error");
             return;
           }
-          return;
         }
       }
     }

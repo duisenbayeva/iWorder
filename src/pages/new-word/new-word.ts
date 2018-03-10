@@ -24,7 +24,7 @@ export class NewWordPage {
   ionViewWillEnter() {
     this.create = this.navParams.get('create');
     if (!this.create) {
-      this.word = this.navParams.get('word');
+      this.word = JSON.parse(JSON.stringify(this.navParams.get('word')));
       this.oldWord = new Word(this.word.word, this.word.translation, this.word.note, this.word.catalog);
     } else {
       this.word = new Word("", "", "", this.navParams.get('catalogName').catalogName)
@@ -40,7 +40,8 @@ export class NewWordPage {
   }
 
   onEditWord(value) {
-    console.log("edit! create=", this.create, value, this.oldWord)
+    console.log("edit! create=", this.create, value, this.word, this.oldWord)
+    this.catalogsService.editWord(this.oldWord, this.word);
   }
 
 
