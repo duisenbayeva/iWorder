@@ -2,7 +2,7 @@
 
   <ion-navbar>
     <ion-buttons end>
-      <button ion-button icon-only (click)="onClickNewWord()">
+      <button ion-button icon-only (click)="addWord()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -13,6 +13,25 @@
 
 
 <ion-content padding>
+  <ion-fab top right edge #fab>
+    <button ion-fab mini>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-fab-list>
+      <button ion-fab (click)="addWord(fab)">
+        <ion-icon name="add"></ion-icon>
+      </button>
+      <button ion-fab (click)="editCatalog(fab)">
+        <ion-icon name="brush"></ion-icon>
+      </button>
+      <button ion-fab (click)="deleteCatalog(fab)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+      <button ion-fab>
+        <ion-icon name="game-controller-a"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
   <ion-label *ngIf="words.length==0">WORDS</ion-label>
   <ion-list inset>
     <ion-item *ngFor="let word of words" (click)="openWord(word)">

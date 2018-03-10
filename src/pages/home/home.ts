@@ -26,23 +26,7 @@ export class HomePage {
 
   createCatalog(fab: FabContainer) {
     fab.close();
-    this.navCtrl.push(NewCatalogPage);
-  }
-
-  editCatalogMode(fab: FabContainer) {
-    fab.close();
-    this.deleteMode = false;
-    this.editMode = !this.editMode;
-  }
-
-  deleteCatalogMode(fab: FabContainer) {
-    fab.close();
-    this.editMode = false;
-    this.deleteMode = !this.deleteMode;
-  }
-
-  openEdit(catalogName: string) {
-    this.navCtrl.push(NewCatalogPage, {create: false, catalogName: catalogName});
+    this.navCtrl.push(NewCatalogPage, {create: true});
   }
 
   openCatalog(catalogName: string) {

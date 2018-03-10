@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Word} from "../../services/catalogs.service";
 import {NewWordPage} from "../new-word/new-word";
+import {NewCatalogPage} from "../new-catalog/new-catalog";
+import {FabContainer} from "ionic-angular"
 
 @IonicPage()
 @Component({
@@ -25,7 +27,7 @@ export class CatalogPage {
     this.words = this.navParams.get('catalogName').wordList;
   }
 
-  onClickNewWord() {
+  addWord() {
     this.navCtrl.push(NewWordPage, {create: true, catalogName: this.name, wordList: this.words});
   }
 
@@ -34,4 +36,15 @@ export class CatalogPage {
     this.navCtrl.push(NewWordPage, {create: false, catalogName: this.name, word: word});
   }
 
+
+  editCatalog(fab: FabContainer) {
+    console.log("edit catalof func", this.name);
+    fab.close();
+    this.navCtrl.push(NewCatalogPage, {create: false, catalogName: this.name});
+  }
+
+  deleteCatalog(fab: FabContainer) {
+    fab.close();
+
+  }
 }

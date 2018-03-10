@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 
-import {CatalogsService} from "../../services/catalogs.service";
+import {Catalog, CatalogsService} from "../../services/catalogs.service";
 
 @IonicPage()
 @Component({
@@ -9,8 +9,25 @@ import {CatalogsService} from "../../services/catalogs.service";
   templateUrl: 'new-catalog.html',
 })
 export class NewCatalogPage {
+  private create: boolean = true;
+  private catalogName: string = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private catalogsService: CatalogsService) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad NewWordPage');
+    console.log(this.navParams);
+  }
+
+  ionViewWillEnter() {
+    this.create = this.navParams.get('create');
+    if (!this.create) {
+      this.catalogName = this.navParams.get('catalogName').catalogName;
+    } else {
+      this.catalogName = "";
+    }
+    console.log("create=", this.create, this.catalogName)
   }
 
   onAddCatalog(value: string) {
