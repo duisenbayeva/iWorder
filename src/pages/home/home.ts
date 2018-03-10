@@ -12,8 +12,6 @@ import {FabContainer} from "ionic-angular";
 })
 export class HomePage {
   private catalogs: Catalog[] = [];
-  private editMode: boolean = false;
-  private deleteMode: boolean = false;
 
   constructor(public navCtrl: NavController, private catalogsService: CatalogsService) {
   }
@@ -26,11 +24,11 @@ export class HomePage {
 
   createCatalog(fab: FabContainer) {
     fab.close();
-    this.navCtrl.push(NewCatalogPage, {create: true});
+    this.navCtrl.push(NewCatalogPage, {create: true, catalogName: ""});
   }
 
   openCatalog(catalogName: string) {
-    this.navCtrl.push(CatalogPage, {create: true, catalogName: catalogName});
+    this.navCtrl.push(CatalogPage, {catalogName: catalogName});
 
   }
 }

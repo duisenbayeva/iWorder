@@ -11,6 +11,7 @@ export class NewWordPage {
 
   private create: boolean = true;
   private word: Word = new Word("", "", "", this.navParams.get('catalogName').catalogName);
+  private oldWord: Word;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private catalogsService: CatalogsService) {
   }
@@ -24,6 +25,7 @@ export class NewWordPage {
     this.create = this.navParams.get('create');
     if (!this.create) {
       this.word = this.navParams.get('word');
+      this.oldWord = new Word(this.word.word, this.word.translation, this.word.note, this.word.catalog);
     } else {
       this.word = new Word("", "", "", this.navParams.get('catalogName').catalogName)
     }
@@ -35,6 +37,10 @@ export class NewWordPage {
     let word = new Word(value.newWord, value.translation, value.note, this.navParams.get('catalogName').catalogName);
     this.catalogsService.addWordToCatalog(word);
     this.navCtrl.pop();
+  }
+
+  onEditWord(value) {
+    console.log("edit! create=", this.create, value, this.oldWord)
   }
 
 

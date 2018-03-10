@@ -38,7 +38,7 @@ export class NewCatalogPage {
   }
 
   onEditCatalog(value: string) {
-    console.log("edit! create=", this.create, this.catalogName)
+    console.log("edit! create=", this.create, this.catalogName, this.oldCatalogName)
   }
 
 }

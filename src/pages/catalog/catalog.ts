@@ -38,7 +38,7 @@ export class CatalogPage {
 
 
   editCatalog(fab: FabContainer) {
-    console.log("edit catalof func", this.name);
+    console.log("edit catalog func", this.name);
     fab.close();
     this.navCtrl.push(NewCatalogPage, {create: false, catalogName: this.name});
   }
