@@ -17,9 +17,7 @@ export class CatalogsService {
         return;
       }
     }
-    let cat = new Catalog();
-    cat.catalogName = catalogName;
-    cat.wordList = [];
+    let cat = new Catalog(catalogName, []);
     console.log("New catalog!")
     this.catalogs.push(cat);
     this.storage.set('catalogs', this.catalogs);
@@ -37,13 +35,25 @@ export class CatalogsService {
 
   addWordToCatalog(word: Word) {
     console.log("addWordToCatalog function input=", word);
+    let wordExist = false;
     if (word.catalog) {
       for (let c of this.catalogs) {
         console.log("c name=", c.catalogName)
         if (c.catalogName['catalogName'] == word.catalog) {
-          c.wordList.push(word);
-          console.log("EXISTS!!!", c.wordList, this.catalogs);
-          this.storage.set('catalogs', this.catalogs);
+          for (let w of c.wordList) {
+            console.log("w=", w.word);
+            if (w.word == word.word) {
+              wordExist = true;
+              console.log("word exists")
+              break;
+            }
+          }
+          if (!wordExist) {
+            c.wordList.push(word);
+            console.log("WORD was added", c.wordList, this.catalogs);
+            this.storage.set('catalogs', this.catalogs);
+            return;
+          }
           return;
         }
       }
