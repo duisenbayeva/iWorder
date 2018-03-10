@@ -42,6 +42,7 @@ export class NewWordPage {
   onEditWord(value) {
     console.log("edit! create=", this.create, value, this.word, this.oldWord)
     this.catalogsService.editWord(this.oldWord, this.word);
+    this.navCtrl.pop();
   }
 
 
