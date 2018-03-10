@@ -45,5 +45,10 @@ export class NewWordPage {
     this.navCtrl.pop();
   }
 
+  onDeleteWord() {
+    this.catalogsService.deleteWord(this.word);
+    this.navCtrl.pop();
+  }
+
 
 }

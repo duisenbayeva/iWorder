@@ -105,6 +105,16 @@ export class CatalogsService {
       }
     }
   }
+
+  deleteCatalog(catalogName) {
+    console.log("deleteCatalog service input =", catalogName);
+
+  }
+
+  deleteWord(word: Word) {
+    console.log("deleteWord service input =", word);
+
+  }
 }
 
 export class Word {

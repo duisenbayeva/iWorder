@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {Word} from "../../services/catalogs.service";
+import {CatalogsService, Word} from "../../services/catalogs.service";
 import {NewWordPage} from "../new-word/new-word";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
 import {FabContainer} from "ionic-angular"
@@ -14,7 +14,7 @@ export class CatalogPage {
   private name: string = "";
   private words: Word[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private catalogService: CatalogsService) {
   }
 
   ionViewDidLoad() {
@@ -47,6 +47,7 @@ export class CatalogPage {
 
   deleteCatalog(fab: FabContainer) {
     fab.close();
-
+    this.catalogService.deleteCatalog(this.name);
+    this.navCtrl.pop();
   }
 }

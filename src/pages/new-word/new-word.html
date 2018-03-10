@@ -1,6 +1,10 @@
 <ion-header>
-
   <ion-navbar>
+    <ion-buttons end *ngIf="!create">
+      <button ion-button icon-only (click)="onDeleteWord()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>{{create? "New Word":"Edit Word"}}</ion-title>
   </ion-navbar>
 
