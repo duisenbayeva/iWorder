@@ -13,6 +13,7 @@ import {FabContainer} from "ionic-angular";
 export class HomePage {
   private catalogs: Catalog[] = [];
   private editMode: boolean = false;
+  private deleteMode: boolean = false;
 
   constructor(public navCtrl: NavController, private catalogsService: CatalogsService) {
   }
@@ -28,17 +29,24 @@ export class HomePage {
     this.navCtrl.push(NewCatalogPage);
   }
 
-  editCatalog(fab: FabContainer) {
+  editCatalogMode(fab: FabContainer) {
     fab.close();
+    this.deleteMode = false;
     this.editMode = !this.editMode;
   }
 
+  deleteCatalogMode(fab: FabContainer) {
+    fab.close();
+    this.editMode = false;
+    this.deleteMode = !this.deleteMode;
+  }
+
   openEdit(catalogName: string) {
-    this.navCtrl.push(NewCatalogPage, {catalogName: catalogName});
+    this.navCtrl.push(NewCatalogPage, {create: false, catalogName: catalogName});
   }
 
   openCatalog(catalogName: string) {
-    this.navCtrl.push(CatalogPage, {catalogName: catalogName});
+    this.navCtrl.push(CatalogPage, {create: true, catalogName: catalogName});
 
   }
 }

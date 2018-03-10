@@ -17,10 +17,10 @@
       <button ion-fab (click)="createCatalog(fab)">
         <ion-icon name="add"></ion-icon>
       </button>
-      <button ion-fab (click)="editCatalog(fab)">
+      <button ion-fab (click)="editCatalogMode(fab)">
         <ion-icon name="brush"></ion-icon>
       </button>
-      <button ion-fab>
+      <button ion-fab (click)="deleteCatalogMode(fab)">
         <ion-icon name="trash"></ion-icon>
       </button>
       <button ion-fab>
@@ -31,8 +31,13 @@
   <ion-list>
     <div class="catalog-container" *ngFor="let catalog of catalogs">
       <div (click)="openEdit(catalog)" *ngIf="editMode" class="catalog-edit">
-        <button>
+        <button ion-button style="width: 30px;height: 30px;">
           <ion-icon name="brush"></ion-icon>
+        </button>
+      </div>
+      <div (click)="openEdit(catalog)" *ngIf="deleteMode" class="catalog-edit">
+        <button ion-button style="width: 30px;height: 30px;">
+          <ion-icon name="trash"></ion-icon>
         </button>
       </div>
       <div class="catalog-name">
