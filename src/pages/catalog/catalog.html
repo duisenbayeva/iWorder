@@ -33,14 +33,14 @@
       <div class="word-label">
         {{ word.word }}
       </div>
-      <button ion-button block class="word-open-btn" (click)="openWord(word)">open</button>
+      <button ion-button block class="word-open-btn" (click)="openWord(word,fab)">open</button>
     </div>
   </ion-list>
   <div class="word-container" *ngIf="words.length==0">
     <div class="word-label">
       Add your first word
     </div>
-    <button ion-button block class="word-open-btn" (click)="addWord()">add</button>
+    <button ion-button block class="word-open-btn" (click)="addWord(fab)">add</button>
   </div>
 
 </ion-content>

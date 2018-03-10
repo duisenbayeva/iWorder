@@ -27,12 +27,14 @@ export class CatalogPage {
     this.words = this.navParams.get('catalogName').wordList;
   }
 
-  addWord() {
+  addWord(fab: FabContainer) {
+    fab.close();
     this.navCtrl.push(NewWordPage, {create: true, catalogName: this.name, wordList: this.words});
   }
 
-  openWord(word: Word) {
-    console.log("openWord", word)
+  openWord(word: Word, fab: FabContainer) {
+    console.log("openWord", word);
+    fab.close();
     this.navCtrl.push(NewWordPage, {create: false, catalogName: this.name, word: word});
   }
 

@@ -27,7 +27,7 @@
       <div class="catalog-name">
         {{ catalog.catalogName['catalogName'] }}
       </div>
-      <button ion-button block class="catalog-open-btn" (click)="openCatalog(catalog)">open</button>
+      <button ion-button block class="catalog-open-btn" (click)="openCatalog(catalog,fab)">open</button>
     </div>
   </ion-list>
   <div class="catalog-container" *ngIf="catalogs.length==0">

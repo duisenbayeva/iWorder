@@ -33,7 +33,46 @@ export class CatalogsService {
       );
   }
 
+  editCatalog(catalogName, newName) {
+    for (let c of this.catalogs) {
+      console.log("c name=", c.catalogName['catalogName'], catalogName)
+      if (c.catalogName['catalogName'] == catalogName) {
+        c.catalogName['catalogName'] = newName;
+        console.log("Found!!!")
+        this.storage.set('catalogs', this.catalogs);
+        return;
+      }
+    }
+  }
+
   addWordToCatalog(word: Word) {
+    console.log("addWordToCatalog function input=", word);
+    let wordExist = false;
+    if (word.catalog) {
+      for (let c of this.catalogs) {
+        console.log("c name=", c.catalogName)
+        if (c.catalogName['catalogName'] == word.catalog) {
+          for (let w of c.wordList) {
+            console.log("w=", w.word);
+            if (w.word == word.word) {
+              wordExist = true;
+              console.log("word exists")
+              break;
+            }
+          }
+          if (!wordExist) {
+            c.wordList.push(word);
+            console.log("WORD was added", c.wordList, this.catalogs);
+            this.storage.set('catalogs', this.catalogs);
+            return;
+          }
+          return;
+        }
+      }
+    }
+  }
+
+  editWord(word: Word, newWord: Word) {
     console.log("addWordToCatalog function input=", word);
     let wordExist = false;
     if (word.catalog) {

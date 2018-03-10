@@ -27,7 +27,8 @@ export class HomePage {
     this.navCtrl.push(NewCatalogPage, {create: true, catalogName: ""});
   }
 
-  openCatalog(catalogName: string) {
+  openCatalog(catalogName: string, fab: FabContainer) {
+    fab.close();
     this.navCtrl.push(CatalogPage, {catalogName: catalogName});
 
   }
