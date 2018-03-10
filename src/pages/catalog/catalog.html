@@ -27,10 +27,20 @@
       </button>
     </ion-fab-list>
   </ion-fab>
-  <ion-label *ngIf="words.length==0">WORDS</ion-label>
-  <ion-list inset>
-    <ion-item *ngFor="let word of words" (click)="openWord(word)">
-      {{ word.word }}
-    </ion-item>
+
+  <ion-list>
+    <div class="word-container" *ngFor="let word of words">
+      <div class="word-label">
+        {{ word.word }}
+      </div>
+      <button ion-button block class="word-open-btn" (click)="openWord(word)">open</button>
+    </div>
   </ion-list>
+  <div class="word-container" *ngIf="words.length==0">
+    <div class="word-label">
+      Add your first word
+    </div>
+    <button ion-button block class="word-open-btn" (click)="addWord()">add</button>
+  </div>
+
 </ion-content>
