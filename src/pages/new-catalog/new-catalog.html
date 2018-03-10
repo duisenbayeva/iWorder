@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>New List</ion-title>
+    <ion-title>{{create? "New Catalog":"Edit Catalog"}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,14 +9,14 @@
 
 <ion-content padding>
   <ion-list>
-    <form (ngSubmit)="onAddCatalog(f.value)" #f="ngForm">
+    <form (ngSubmit)="create? onAddCatalog(f.value):onEditCatalog(f.value)" #f="ngForm">
 
       <ion-item>
         <ion-label floating>Catalog Name</ion-label>
         <ion-input type="text" name="catalogName" [(ngModel)]="catalogName" required></ion-input>
       </ion-item>
 
-      <button ion-button block type="submit" [disabled]="!f.valid">add catalog</button>
+      <button ion-button block type="submit" [disabled]="!f.valid">{{create? "add":"edit"}}</button>
     </form>
   </ion-list>
 </ion-content>

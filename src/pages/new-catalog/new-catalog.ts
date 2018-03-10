@@ -11,6 +11,7 @@ import {Catalog, CatalogsService} from "../../services/catalogs.service";
 export class NewCatalogPage {
   private create: boolean = true;
   private catalogName: string = "";
+  private oldCatalogName: string = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private catalogsService: CatalogsService) {
   }
@@ -24,6 +25,7 @@ export class NewCatalogPage {
     this.create = this.navParams.get('create');
     if (!this.create) {
       this.catalogName = this.navParams.get('catalogName').catalogName;
+      this.oldCatalogName = this.navParams.get('catalogName').catalogName;
     } else {
       this.catalogName = "";
     }
@@ -33,6 +35,10 @@ export class NewCatalogPage {
   onAddCatalog(value: string) {
     this.catalogsService.addCatalog(value);
     this.navCtrl.pop();
+  }
+
+  onEditCatalog(value: string) {
+    console.log("edit! create=", this.create, this.catalogName)
   }
 
 }
