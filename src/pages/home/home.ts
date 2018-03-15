@@ -4,6 +4,7 @@ import {Catalog, CatalogsService} from "../../services/catalogs.service";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
 import {CatalogPage} from "../catalog/catalog";
 import {FabContainer} from "ionic-angular";
+import {GamePage} from "../game/game";
 
 
 @Component({
@@ -31,5 +32,10 @@ export class HomePage {
     fab.close();
     this.navCtrl.push(CatalogPage, {catalogName: catalogName});
 
+  }
+
+  openGame(fab: FabContainer) {
+    fab.close();
+    this.navCtrl.push(GamePage);
   }
 }

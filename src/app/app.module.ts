@@ -12,6 +12,7 @@ import {NewWordPage} from "../pages/new-word/new-word";
 import {CatalogPage} from "../pages/catalog/catalog";
 
 import {CatalogsService} from "../services/catalogs.service";
+import {GamePage} from "../pages/game/game";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {CatalogsService} from "../services/catalogs.service";
     HomePage,
     NewCatalogPage,
     NewWordPage,
-    CatalogPage
+    CatalogPage,
+    GamePage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import {CatalogsService} from "../services/catalogs.service";
     HomePage,
     NewCatalogPage,
     NewWordPage,
-    CatalogPage
+    CatalogPage,
+    GamePage
   ],
   providers: [
     StatusBar,
