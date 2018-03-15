@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {CatalogsService, Word} from "../../services/catalogs.service";
 import {NewWordPage} from "../new-word/new-word";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
@@ -14,7 +14,9 @@ export class CatalogPage {
   private name: string = "";
   private words: Word[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private catalogService: CatalogsService) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private catalogService: CatalogsService, private modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -35,6 +37,7 @@ export class CatalogPage {
   openWord(word: Word, fab: FabContainer) {
     console.log("openWord", word);
     fab.close();
+    // this.modalCtrl.create(NewWordPage, {create: false, catalogName: this.name, word: word}).present();
     this.navCtrl.push(NewWordPage, {create: false, catalogName: this.name, word: word});
   }
 

@@ -108,12 +108,52 @@ export class CatalogsService {
 
   deleteCatalog(catalogName) {
     console.log("deleteCatalog service input =", catalogName);
+    let catalogDeleted = false;
+    let index = 0;
+    for (let c of this.catalogs) {
+      console.log("c name=", c.catalogName['catalogName'], catalogName)
+      if (c.catalogName['catalogName'] == catalogName.catalogName) {
+        this.catalogs.splice(index, 1);
+        console.log("Found!!!")
+        catalogDeleted = true;
+        this.storage.set('catalogs', this.catalogs);
+        return;
+      }
+      index++;
+    }
+    if (!catalogDeleted) {
+      console.log("Catalog was not deleted error");
+      return;
+    }
 
   }
 
   deleteWord(word: Word) {
     console.log("deleteWord service input =", word);
-
+    let wordDeleted = false;
+    if (word.catalog) {
+      for (let c of this.catalogs) {
+        console.log("c name=", c.catalogName)
+        if (c.catalogName['catalogName'] == word.catalog) {
+          let index = 0;
+          for (let w of c.wordList) {
+            console.log("w=", w.word);
+            if (w.word == word.word) {
+              wordDeleted = true;
+              c.wordList.splice(index, 1);
+              console.log("word exists, deleted", this.catalogs);
+              this.storage.set('catalogs', this.catalogs);
+              return;
+            }
+            index++;
+          }
+          if (!wordDeleted) {
+            console.log("WORD was not deleted error");
+            return;
+          }
+        }
+      }
+    }
   }
 }
 
