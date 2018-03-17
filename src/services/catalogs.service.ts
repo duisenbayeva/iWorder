@@ -98,30 +98,30 @@ export class CatalogsService {
   }
 
   editWord(word: Word, newWord: Word) {
-    console.log("editWord function input=", word, newWord, this.catalogs);
-    let wordExist = false;
-    if (word.catalog) {
-      for (let c of this.catalogs) {
-        console.log("c name=", c.catalogName)
-        if (c.catalogName['catalogName'] == word.catalog) {
-          let index = 0;
-          for (let w of c.wordList) {
-            console.log("w=", w.word);
-            if (w.word == word.word) {
-              wordExist = true;
-              c.wordList[index] = newWord;
-              console.log("word exists, going to change now", w, this.catalogs);
-              this.storage.set('catalogs', this.catalogs);
-              return;
-            }
-            index++;
-          }
-          if (!wordExist) {
-            console.log("WORD do not exist! error");
-            return;
-          }
-        }
+    console.log("editWord function input=", word, newWord);
+    let catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
+    let success = false;
+    if (word.catalog in catalogs2) {
+      if (word.word in catalogs2[word.catalog].wordList) {
+        delete catalogs2[word.catalog].wordList[word.word];
+        catalogs2[newWord.catalog].wordList[newWord.word] = newWord;
+        console.log("new Word in map", catalogs2[newWord.catalog].wordList[newWord.word]);
+        console.log("Saved in map", JSON.stringify(catalogs2));
+        localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
+        this.catalogs = [];
+        this.catalogs = Object.keys(catalogs2).map(function (val) {
+          catalogs2[val].wordList = Object.keys(catalogs2[val].wordList).map(function (val2) {
+            return catalogs2[val].wordList[val2];
+          });
+          return catalogs2[val];
+        });
+        console.log("List=", this.catalogs);
+        this.storage.set('catalogs', this.catalogs);
+        return;
       }
+    }
+    if (!success) {
+      console.log("Word was not added");
     }
   }
 
