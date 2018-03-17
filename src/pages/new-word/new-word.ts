@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {CatalogsService, Word} from "../../services/catalogs.service";
+import {CatalogsService} from "../../services/catalogs.service";
+import {Word} from "../../model/word.model";
 
 @IonicPage()
 @Component({

@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {Catalog, CatalogsService} from "../../services/catalogs.service";
+import {Component} from "@angular/core";
+import {FabContainer, NavController} from "ionic-angular";
+import {CatalogsService} from "../../services/catalogs.service";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
 import {CatalogPage} from "../catalog/catalog";
-import {FabContainer} from "ionic-angular";
 import {GamePage} from "../game/game";
+import {Catalog} from "../../model/catalog.model";
 
 
 @Component({

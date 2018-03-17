@@ -1,26 +1,35 @@
-import {Storage} from '@ionic/storage';
+import {Storage} from "@ionic/storage";
 import {Injectable} from "@angular/core";
+import {Word} from "../model/word.model";
+import {Catalog} from "../model/catalog.model";
 
 @Injectable()
 export class CatalogsService {
 
   private catalogs: Catalog[] = [];
+  private catalogs2: {} = {};
 
   constructor(private storage: Storage) {
   }
 
   addCatalog(catalogName) {
-    for (let c of this.catalogs) {
-      console.log("c name=", c.catalogName['catalogName'], catalogName)
-      if (c.catalogName['catalogName'] == catalogName.catalogName) {
-        console.error("EXISTS!!!")
-        return;
+
+    this.catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
+
+    if (catalogName.catalogName in this.catalogs2) {
+      console.log("catalog exists in map")
+    } else {
+      let cat = new Catalog(catalogName, []);
+      this.catalogs2[catalogName.catalogName] = cat;
+      console.log("Saved catalog in map", this.catalogs2);
+      this.catalogs = [];
+      for (let i in this.catalogs2) {
+        this.catalogs.push(this.catalogs2[i]);
       }
+      console.log(this.catalogs);
+      localStorage.setItem('catalogsMap', JSON.stringify(this.catalogs2));
+      this.storage.set('catalogs', this.catalogs);
     }
-    let cat = new Catalog(catalogName, []);
-    console.log("New catalog!")
-    this.catalogs.push(cat);
-    this.storage.set('catalogs', this.catalogs);
   }
 
   getCatalogs() {
@@ -157,28 +166,4 @@ export class CatalogsService {
   }
 }
 
-export class Word {
-  public word: string;
-  public translation: string;
-  public note: string;
-  public catalog: string;
 
-
-  constructor(word: string, translation: string, note: string, catalog: string) {
-    this.word = word;
-    this.translation = translation;
-    this.note = note;
-    this.catalog = catalog;
-  }
-}
-
-export class Catalog {
-  public catalogName: string;
-  public wordList: Word[];
-
-
-  constructor(catalogName: string, wordList: Word[]) {
-    this.catalogName = catalogName;
-    this.wordList = wordList;
-  }
-}

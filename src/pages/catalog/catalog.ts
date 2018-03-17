@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
-import {CatalogsService, Word} from "../../services/catalogs.service";
+import {CatalogsService} from "../../services/catalogs.service";
 import {NewWordPage} from "../new-word/new-word";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
 import {FabContainer} from "ionic-angular"
+import {Word} from "../../model/word.model";
 
 @IonicPage()
 @Component({
