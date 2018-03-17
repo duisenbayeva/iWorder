@@ -14,20 +14,26 @@ export class CatalogsService {
 
   addCatalog(catalogName) {
 
-    this.catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
+    let catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
 
     if (catalogName in this.catalogs2) {
       console.log("catalog exists in map")
     } else {
       let cat = new Catalog(catalogName, []);
-      this.catalogs2[catalogName] = cat;
-      console.log("Saved catalog in map", this.catalogs2);
+      catalogs2[catalogName] = cat;
+      console.log("Saved catalog in map", catalogs2);
       this.catalogs = [];
-      for (let i in this.catalogs2) {
-        this.catalogs.push(this.catalogs2[i]);
-      }
+      // for (let i in this.catalogs2) {
+      //   this.catalogs.push(this.catalogs2[i]);
+      // }
+      // let c = this.catalogs2;
+      this.catalogs = Object.keys(catalogs2).map(function (val) {
+        return catalogs2[val];
+      });
+
+      // console.log("ARRAY", array);
       console.log(this.catalogs);
-      localStorage.setItem('catalogsMap', JSON.stringify(this.catalogs2));
+      localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
       this.storage.set('catalogs', this.catalogs);
     }
   }
