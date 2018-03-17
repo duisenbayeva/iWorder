@@ -1,9 +1,8 @@
-import {Component} from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {Component} from "@angular/core";
+import {FabContainer, IonicPage, NavController, NavParams} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewWordPage} from "../new-word/new-word";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
-import {FabContainer} from "ionic-angular"
 import {Word} from "../../model/word.model";
 
 @IonicPage()
@@ -17,17 +16,13 @@ export class CatalogPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private catalogService: CatalogsService, private modalCtrl: ModalController) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CatalogPage');
-    console.log(this.navParams.get('catalogName').wordList);
+              private catalogService: CatalogsService) {
   }
 
   ionViewWillEnter() {
-    this.name = this.navParams.get('catalogName').catalogName;
-    this.words = this.navParams.get('catalogName').wordList;
+    console.log('ionViewWillEnter CatalogPage', this.navParams);
+    this.name = this.navParams.get('catalog').catalogName;
+    this.words = this.navParams.get('catalog').wordList;
   }
 
   addWord(fab: FabContainer) {
@@ -46,7 +41,7 @@ export class CatalogPage {
   editCatalog(fab: FabContainer) {
     console.log("edit catalog func", this.name);
     fab.close();
-    this.navCtrl.push(NewCatalogPage, {create: false, catalogName: this.name});
+    this.navCtrl.push(NewCatalogPage, {"create": false, "catalogName": this.name});
   }
 
   deleteCatalog(fab: FabContainer) {

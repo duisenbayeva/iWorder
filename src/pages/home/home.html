@@ -25,7 +25,7 @@
   <ion-list>
     <div class="catalog-container" *ngFor="let catalog of catalogs">
       <div class="catalog-name">
-        {{ catalog.catalogName['catalogName'] }}
+        {{ catalog.catalogName }}
       </div>
       <button ion-button block class="catalog-open-btn" (click)="openCatalog(catalog,fab)">open</button>
     </div>

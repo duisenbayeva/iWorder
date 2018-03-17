@@ -28,9 +28,10 @@ export class HomePage {
     this.navCtrl.push(NewCatalogPage, {create: true, catalogName: ""});
   }
 
-  openCatalog(catalogName: string, fab: FabContainer) {
+  openCatalog(catalog: Catalog, fab: FabContainer) {
     fab.close();
-    this.navCtrl.push(CatalogPage, {catalogName: catalogName});
+    console.log("cat to send", catalog)
+    this.navCtrl.push(CatalogPage, {"catalog": catalog});
 
   }
 

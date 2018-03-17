@@ -16,11 +16,11 @@ export class CatalogsService {
 
     this.catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
 
-    if (catalogName.catalogName in this.catalogs2) {
+    if (catalogName in this.catalogs2) {
       console.log("catalog exists in map")
     } else {
       let cat = new Catalog(catalogName, []);
-      this.catalogs2[catalogName.catalogName] = cat;
+      this.catalogs2[catalogName] = cat;
       console.log("Saved catalog in map", this.catalogs2);
       this.catalogs = [];
       for (let i in this.catalogs2) {
@@ -43,20 +43,23 @@ export class CatalogsService {
   }
 
   editCatalog(catalogName, newName) {
-    let catalogExist = false;
-    for (let c of this.catalogs) {
-      console.log("c name=", c.catalogName['catalogName'], catalogName)
-      if (c.catalogName['catalogName'] == catalogName) {
-        c.catalogName['catalogName'] = newName;
-        console.log("Found!!!")
-        catalogExist = true;
-        this.storage.set('catalogs', this.catalogs);
-        return;
+    this.catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
+
+    if (catalogName in this.catalogs2) {
+      console.log("catalog exists in map to edit")
+      let newCat = new Catalog(newName, this.catalogs2[catalogName].wordList);
+      this.catalogs2[newName] = newCat;
+      delete this.catalogs2[catalogName];
+      console.log("Saved catalog in map", this.catalogs2);
+      this.catalogs = [];
+      for (let i in this.catalogs2) {
+        this.catalogs.push(this.catalogs2[i]);
       }
-    }
-    if (!catalogExist) {
-      console.log("Catalog do not exist error");
-      return;
+      console.log(this.catalogs);
+      localStorage.setItem('catalogsMap', JSON.stringify(this.catalogs2));
+      this.storage.set('catalogs', this.catalogs);
+    } else {
+      console.log("was not found to edit")
     }
   }
 

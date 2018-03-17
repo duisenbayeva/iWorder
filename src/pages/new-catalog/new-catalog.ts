@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Component} from "@angular/core";
+import {IonicPage, NavController, NavParams} from "ionic-angular";
 
 import {CatalogsService} from "../../services/catalogs.service";
 
@@ -16,29 +16,26 @@ export class NewCatalogPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private catalogsService: CatalogsService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NewWordPage');
-    console.log(this.navParams);
-  }
-
   ionViewWillEnter() {
+    console.log('ionViewWillEnter NewCatalogPage', this.navParams);
     this.create = this.navParams.get('create');
     if (!this.create) {
-      this.catalogName = this.navParams.get('catalogName').catalogName;
-      this.oldCatalogName = this.navParams.get('catalogName').catalogName;
+      this.catalogName = this.navParams.get('catalogName');
+      this.oldCatalogName = this.navParams.get('catalogName');
     } else {
       this.catalogName = "";
     }
     console.log("create=", this.create, this.catalogName)
   }
 
-  onAddCatalog(value: string) {
-    this.catalogsService.addCatalog(value);
+  onAddCatalog() {
+    console.log("add! create=", this.catalogName);
+    this.catalogsService.addCatalog(this.catalogName);
     this.navCtrl.pop();
   }
 
-  onEditCatalog(value: string) {
-    console.log("edit! create=", this.create, this.catalogName, this.oldCatalogName)
+  onEditCatalog() {
+    console.log("edit cat! ", this.catalogName, this.oldCatalogName);
     this.catalogsService.editCatalog(this.oldCatalogName, this.catalogName);
     this.navCtrl.pop();
   }
