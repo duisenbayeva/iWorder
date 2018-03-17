@@ -72,28 +72,28 @@ export class CatalogsService {
 
   addWordToCatalog(word: Word) {
     console.log("addWordToCatalog function input=", word);
-    let wordExist = false;
-    if (word.catalog) {
-      for (let c of this.catalogs) {
-        console.log("c name=", c.catalogName)
-        if (c.catalogName['catalogName'] == word.catalog) {
-          for (let w of c.wordList) {
-            console.log("w=", w.word);
-            if (w.word == word.word) {
-              wordExist = true;
-              console.log("word exists")
-              break;
-            }
-          }
-          if (!wordExist) {
-            c.wordList.push(word);
-            console.log("WORD was added", c.wordList, this.catalogs);
-            this.storage.set('catalogs', this.catalogs);
-            return;
-          }
-          return;
-        }
+    let catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
+    let success = false;
+    if (word.catalog in catalogs2) {
+      if (!(word.word in catalogs2[word.catalog].wordList)) {
+        catalogs2[word.catalog].wordList[word.word] = word;
+        console.log("Word in map", catalogs2[word.catalog].wordList[word.word]);
+        console.log("Saved in map", JSON.stringify(catalogs2));
+        localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
+        this.catalogs = [];
+        this.catalogs = Object.keys(catalogs2).map(function (val) {
+          catalogs2[val].wordList = Object.keys(catalogs2[val].wordList).map(function (val2) {
+            return catalogs2[val].wordList[val2];
+          });
+          return catalogs2[val];
+        });
+        console.log("List=", this.catalogs);
+        this.storage.set('catalogs', this.catalogs);
+        return;
       }
+    }
+    if (!success) {
+      console.log("Word was not added");
     }
   }
 
