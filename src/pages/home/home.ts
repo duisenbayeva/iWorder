@@ -55,6 +55,7 @@ export class HomePage {
     event.stopPropagation();
     fab.close();
     this.catalogService.deleteCatalog(catalog.catalogName);
+    this.ionViewWillEnter();
   }
 
   openCatalog(catalog: Catalog, fab: FabContainer) {

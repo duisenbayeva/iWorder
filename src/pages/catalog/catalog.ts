@@ -57,7 +57,7 @@ export class CatalogPage {
     console.log("delete word func", word);
     fab.close();
     this.catalogService.deleteWord(word);
-    this.navCtrl.pop();
+    this.ionViewWillEnter();
   }
 
   openWord(word: Word, fab: FabContainer) {
