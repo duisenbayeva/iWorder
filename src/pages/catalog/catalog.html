@@ -16,28 +16,29 @@
       <button ion-fab (click)="addWord(fab)">
         <ion-icon name="add"></ion-icon>
       </button>
-      <button ion-fab (click)="editCatalog(fab)">
+      <button ion-fab *ngIf="words.length!=0" (click)="editWordMode(fab)">
         <ion-icon name="brush"></ion-icon>
       </button>
-      <button ion-fab (click)="deleteCatalog(fab)">
+      <button ion-fab *ngIf="words.length!=0" (click)="deleteWordMode(fab)">
         <ion-icon name="trash"></ion-icon>
       </button>
     </ion-fab-list>
   </ion-fab>
 
   <ion-list>
-    <div class="word-container" *ngFor="let word of words">
+    <div class="word-container" *ngFor="let word of words" (click)="openWord(word,fab)">
       <div class="word-label">
         {{ word.word }}
       </div>
-      <button ion-button block class="word-open-btn" (click)="openWord(word,fab)">open</button>
+      <button *ngIf="editMode" ion-button small right class="word-open-btn" (click)="editWord(word,fab)"><ion-icon name="brush"></ion-icon></button>
+      <button *ngIf="deleteMode" ion-button small right class="word-open-btn" (click)="deleteWord(word,fab)"><ion-icon name="trash"></ion-icon></button>
     </div>
   </ion-list>
-  <div class="word-container" *ngIf="words.length==0">
+  <div class="word-container word-container-add" *ngIf="words.length==0">
     <div class="word-label">
       Add your first word
     </div>
-    <button ion-button block class="word-open-btn" (click)="addWord(fab)">add</button>
+    <button ion-button block class="word-open-btn word-add-button" (click)="addWord(fab)">add</button>
   </div>
 
 </ion-content>
