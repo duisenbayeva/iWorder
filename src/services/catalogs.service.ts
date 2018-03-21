@@ -16,14 +16,14 @@ export class CatalogsService {
 
     let catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
 
-    if (catalogName in this.catalogs2) {
-      console.log("catalog exists in map")
-    } else {
+    if (!(catalogName in this.catalogs2)) {
       catalogs2[catalogName] = {"catalogName": catalogName, "wordList": {}};
-      console.log("Saved catalog in map", JSON.stringify(catalogs2));
       localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
       this.updateCatalogList();
+      return;
     }
+
+    console.log("catalog exists")
   }
 
   getCatalogs() {
@@ -40,12 +40,10 @@ export class CatalogsService {
     let catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
 
     if (catalogName in catalogs2) {
-      console.log("catalog exists in map to edit")
       catalogs2[newName] = {
         "catalogName": newName, "wordList": catalogs2[catalogName].wordList
       };
       delete catalogs2[catalogName];
-      console.log("Saved catalog in map", JSON.stringify(catalogs2));
       localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
       this.updateCatalogList();
     } else {
@@ -60,8 +58,6 @@ export class CatalogsService {
     if (word.catalog in catalogs2) {
       if (!(word.word in catalogs2[word.catalog].wordList)) {
         catalogs2[word.catalog].wordList[word.word] = word;
-        console.log("Word in map", catalogs2[word.catalog].wordList[word.word]);
-        console.log("Saved in map", JSON.stringify(catalogs2));
         localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
         this.updateCatalogList();
         return;
@@ -80,8 +76,6 @@ export class CatalogsService {
       if (word.word in catalogs2[word.catalog].wordList) {
         delete catalogs2[word.catalog].wordList[word.word];
         catalogs2[newWord.catalog].wordList[newWord.word] = newWord;
-        console.log("new Word in map", catalogs2[newWord.catalog].wordList[newWord.word]);
-        console.log("Saved in map", JSON.stringify(catalogs2));
         localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
         this.updateCatalogList();
         return;
@@ -96,7 +90,6 @@ export class CatalogsService {
     let catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
     if (catalogName in catalogs2) {
       delete catalogs2[catalogName];
-      console.log("Saved in map", JSON.stringify(catalogs2));
       localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
       this.updateCatalogList();
       return;
@@ -122,7 +115,6 @@ export class CatalogsService {
     if (word.catalog in catalogs2) {
       if (word.word in catalogs2[word.catalog].wordList) {
         delete catalogs2[word.catalog].wordList[word.word];
-        console.log("Saved in map", JSON.stringify(catalogs2));
         localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
         this.updateCatalogList();
         return;
@@ -140,7 +132,6 @@ export class CatalogsService {
       });
       return catalogs2[val];
     });
-    console.log("List=", this.catalogs);
     this.storage.set('catalogs', this.catalogs);
   }
 
