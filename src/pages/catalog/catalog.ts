@@ -23,7 +23,7 @@ export class CatalogPage {
   ionViewWillEnter() {
     console.log('ionViewWillEnter CatalogPage', this.navParams);
     this.name = this.navParams.get('catalog').catalogName;
-    this.words = this.navParams.get('catalog').wordList;
+    this.words = this.catalogService.getCatalog(this.navParams.get('catalog').catalogName).wordList;
   }
 
   addWord(fab: FabContainer) {

@@ -104,6 +104,17 @@ export class CatalogsService {
     console.log("Catalog was not deleted");
   }
 
+  getCatalog(catalogName){
+    let catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
+    let catalog = new Catalog(catalogName,[]);
+    if (catalogName in catalogs2) {
+      catalog.wordList = Object.keys(catalogs2[catalogName].wordList).map(function (val) {
+        return catalogs2[catalogName].wordList[val];
+      });
+    }
+    return catalog;
+  }
+
   deleteWord(word: Word) {
     console.log("deleteWord service input =", word);
     let catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
