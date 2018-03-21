@@ -17,23 +17,30 @@
       <button ion-fab (click)="createCatalog(fab)">
         <ion-icon name="add"></ion-icon>
       </button>
+      <button ion-fab (click)="editCatalogMode(fab)">
+        <ion-icon name="brush"></ion-icon>
+      </button>
+      <button ion-fab (click)="deleteCatalogMode(fab)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
       <button ion-fab (click)="openGame(fab)">
         <ion-icon name="game-controller-a"></ion-icon>
       </button>
     </ion-fab-list>
   </ion-fab>
   <ion-list>
-    <div class="catalog-container" *ngFor="let catalog of catalogs">
+    <div class="catalog-container" *ngFor="let catalog of catalogs" (click)="openCatalog(catalog,fab)">
       <div class="catalog-name">
         {{ catalog.catalogName }}
       </div>
-      <button ion-button block class="catalog-open-btn" (click)="openCatalog(catalog,fab)">open</button>
+      <button *ngIf="editMode" ion-button small right class="catalog-open-btn" (click)="editCatalog(catalog,fab)"><ion-icon name="brush"></ion-icon></button>
+      <button *ngIf="deleteMode" ion-button small right class="catalog-open-btn" (click)="deleteCatalog(catalog,fab)"><ion-icon name="trash"></ion-icon></button>
     </div>
   </ion-list>
-  <div class="catalog-container" *ngIf="catalogs.length==0">
+  <div class="catalog-container catalog-container-add" *ngIf="catalogs.length==0">
     <div class="catalog-name">
       Add your first catalog
     </div>
-    <button ion-button block class="catalog-open-btn" (click)="createCatalog(fab)">add</button>
+    <button ion-button block class="catalog-open-btn catalog-add-button" (click)="createCatalog(fab)">add</button>
   </div>
 </ion-content>

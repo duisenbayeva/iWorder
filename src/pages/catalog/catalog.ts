@@ -38,15 +38,4 @@ export class CatalogPage {
   }
 
 
-  editCatalog(fab: FabContainer) {
-    console.log("edit catalog func", this.name);
-    fab.close();
-    this.navCtrl.push(NewCatalogPage, {"create": false, "catalogName": this.name});
-  }
-
-  deleteCatalog(fab: FabContainer) {
-    fab.close();
-    this.catalogService.deleteCatalog(this.name);
-    this.navCtrl.pop();
-  }
 }
