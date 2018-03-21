@@ -15,4 +15,8 @@ export class GamePage {
     console.log('ionViewDidLoad GamePage');
   }
 
+  startMcq(){
+
+  }
+
 }
