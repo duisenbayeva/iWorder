@@ -27,7 +27,7 @@
 
       <ion-item>
         <ion-label floating>Note</ion-label>
-        <ion-input type="text" name="note" [(ngModel)]="word.note" required></ion-input>
+        <ion-input type="text" name="note" [(ngModel)]="word.note"></ion-input>
       </ion-item>
 
       <button ion-button block type="submit" [disabled]="!f.valid">{{create? "add":"edit"}}</button>

@@ -1,8 +1,9 @@
 import {Component} from "@angular/core";
-import {FabContainer, IonicPage, NavController, NavParams} from "ionic-angular";
+import {FabContainer, IonicPage, ModalController, NavController, NavParams} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewWordPage} from "../new-word/new-word";
 import {Word} from "../../model/word.model";
+import {WordPage} from "../word/word";
 
 @IonicPage()
 @Component({
@@ -17,12 +18,14 @@ export class CatalogPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private catalogService: CatalogsService) {
+              private catalogService: CatalogsService,
+              private modalCtrl: ModalController) {
   }
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter CatalogPage', this.navParams);
     this.name = this.navParams.get('catalog').catalogName;
+    // this.words = this.navParams.get('catalog').wordList;
     this.words = this.catalogService.getCatalog(this.navParams.get('catalog').catalogName).wordList;
   }
 
@@ -63,8 +66,11 @@ export class CatalogPage {
   openWord(word: Word, fab: FabContainer) {
     console.log("openWord", word);
     fab.close();
-    // this.modalCtrl.create(NewWordPage, {create: false, catalogName: this.name, word: word}).present();
-    this.navCtrl.push(NewWordPage, {create: false, catalogName: this.name, word: word});
+   let wordModal =  this.modalCtrl.create(WordPage, {catalogName: this.name, word: word});
+   wordModal.present();
+   wordModal.onDidDismiss(()=>{
+     this.ionViewWillEnter();
+   })
   }
 
 

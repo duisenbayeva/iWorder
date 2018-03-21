@@ -14,15 +14,13 @@ export class NewWordPage {
   private word: Word = new Word("", "", "", this.navParams.get('catalogName'));
   private oldWord: Word;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private catalogsService: CatalogsService) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NewWordPage');
-    console.log(this.navParams);
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private catalogsService: CatalogsService) {
   }
 
   ionViewWillEnter() {
+    console.log('ionViewWillEnter NewWordPage', this.navParams);
     this.create = this.navParams.get('create');
     if (!this.create) {
       this.word = JSON.parse(JSON.stringify(this.navParams.get('word')));
@@ -34,8 +32,6 @@ export class NewWordPage {
   }
 
   onAddWord() {
-    // console.log("Value=", value);
-    // let word = new Word(value.newWord, value.translation, value.note, this.navParams.get('catalogName').catalogName);
     this.catalogsService.addWordToCatalog(this.word);
     this.navCtrl.pop();
   }

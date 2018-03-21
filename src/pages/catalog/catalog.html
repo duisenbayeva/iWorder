@@ -31,7 +31,8 @@
         {{ word.word }}
       </div>
       <button *ngIf="editMode" ion-button small right class="word-open-btn" (click)="editWord(word,fab)"><ion-icon name="brush"></ion-icon></button>
-      <button *ngIf="deleteMode" ion-button small right class="word-open-btn" (click)="deleteWord(word,fab)"><ion-icon name="trash"></ion-icon></button>
+      <button *ngIf="deleteMode" ion-button small right class="word-open-btn" (click)="deleteWord(word
+      ,fab)"><ion-icon name="trash"></ion-icon></button>
     </div>
   </ion-list>
   <div class="word-container word-container-add" *ngIf="words.length==0">

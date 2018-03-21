@@ -20,7 +20,7 @@ export class CatalogsService {
       catalogs2[catalogName] = {"catalogName": catalogName, "wordList": {}};
       localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
       this.updateCatalogList();
-      return;
+
     }
 
     console.log("catalog exists")
@@ -104,8 +104,8 @@ export class CatalogsService {
       catalog.wordList = Object.keys(catalogs2[catalogName].wordList).map(function (val) {
         return catalogs2[catalogName].wordList[val];
       });
+      return catalog;
     }
-    return catalog;
   }
 
   deleteWord(word: Word) {

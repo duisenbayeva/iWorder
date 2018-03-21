@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onDeleteWord()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Word</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+      <ion-item>
+        <ion-label>Word: {{word.word}}</ion-label>
+      </ion-item>
+
+    <ion-item>
+      <ion-label>Translation: {{word.translation}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Note: {{word.note}}</ion-label>
+    </ion-item>
+
+      <button ion-button block (click)="dismiss()">dismiss</button>
+  </ion-list>
+
+</ion-content>

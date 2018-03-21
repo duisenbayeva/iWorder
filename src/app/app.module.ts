@@ -13,6 +13,7 @@ import {CatalogPage} from "../pages/catalog/catalog";
 
 import {CatalogsService} from "../services/catalogs.service";
 import {GamePage} from "../pages/game/game";
+import {WordPage} from "../pages/word/word";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {GamePage} from "../pages/game/game";
     NewCatalogPage,
     NewWordPage,
     CatalogPage,
-    GamePage
+    GamePage,
+    WordPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import {GamePage} from "../pages/game/game";
     NewCatalogPage,
     NewWordPage,
     CatalogPage,
-    GamePage
+    GamePage,
+    WordPage
   ],
   providers: [
     StatusBar,
