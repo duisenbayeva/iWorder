@@ -14,16 +14,15 @@ import {CatalogPage} from "../pages/catalog/catalog";
 import {CatalogsService} from "../services/catalogs.service";
 import {GamePage} from "../pages/game/game";
 import {WordPage} from "../pages/word/word";
+import {McqPage} from "../pages/mcq/mcq";
+import {QuizService} from "../services/quiz.service";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    NewCatalogPage,
-    NewWordPage,
-    CatalogPage,
-    GamePage,
-    WordPage
+    HomePage,NewCatalogPage,
+    NewWordPage, CatalogPage,
+    GamePage,WordPage,McqPage
   ],
   imports: [
     BrowserModule,
@@ -33,18 +32,15 @@ import {WordPage} from "../pages/word/word";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    NewCatalogPage,
-    NewWordPage,
-    CatalogPage,
-    GamePage,
-    WordPage
+    HomePage, NewCatalogPage,
+    NewWordPage, CatalogPage,
+    GamePage, WordPage, McqPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CatalogsService
+    CatalogsService, QuizService
   ]
 })
 export class AppModule {
