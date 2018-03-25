@@ -31,6 +31,7 @@ export class CatalogsService {
       .then(
         (catalogs) => {
           this.catalogs = catalogs == null ? [] : catalogs;
+          console.log("catalogs=", this.catalogs);
           return this.catalogs.slice();
         }
       );

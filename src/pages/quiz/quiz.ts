@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the QuizPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {QuizService} from "../../services/quiz.service";
 
 @IonicPage()
 @Component({
@@ -14,12 +8,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'quiz.html',
 })
 export class QuizPage {
+  private questions :[]=[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public quizService: QuizService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad QuizPage');
+    console.log('ionViewDidLoad QuizPage', Math.random());
+    this.questions = this.quizService.getQuestions();
+    console.log("questions", this.questions)
   }
 
 }
