@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from "@angular/core";
+import {IonicPage, NavController, NavParams} from "ionic-angular";
 import {QuizPage} from "../quiz/quiz";
 
 @IonicPage()
@@ -16,7 +16,7 @@ export class GamePage {
     console.log('ionViewDidLoad GamePage');
   }
 
-  startMcq(){
+  startMcq() {
     console.log("start mcq");
     this.navCtrl.push(QuizPage);
   }

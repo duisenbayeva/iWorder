@@ -1,9 +1,3 @@
-<!--
-  Generated template for the QuizPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -14,5 +8,47 @@
 
 
 <ion-content padding>
+
+  <ion-slides #slides>
+
+    <ion-slide>
+
+      <h3>Question 1</h3>
+
+      <flash-card [isFlipped]="flashCardFlipped">
+        <div class="flash-card-front">Word itself</div>
+        <div class="flash-card-back">Word Full Card</div>
+      </flash-card>
+
+      <h3>What is this?</h3>
+
+      <ion-list no-lines radio-group>
+
+        <ion-item>
+
+          <ion-label>1. Helicopter</ion-label>
+          <ion-radio (click)="selectAnswer()"></ion-radio>
+
+        </ion-item>
+
+        <ion-item>
+
+          <ion-label>2. Truck</ion-label>
+          <ion-radio (click)="selectAnswer()"></ion-radio>
+
+        </ion-item>
+
+        <ion-item>
+
+          <ion-label>3. Plane</ion-label>
+          <ion-radio (click)="selectAnswer()"></ion-radio>
+
+        </ion-item>
+
+      </ion-list>
+
+    </ion-slide>
+
+  </ion-slides>
 
 </ion-content>

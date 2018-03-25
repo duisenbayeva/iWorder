@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, ViewChild} from "@angular/core";
+import {IonicPage, NavController, NavParams} from "ionic-angular";
 import {QuizService} from "../../services/quiz.service";
 
 @IonicPage()
@@ -8,7 +8,12 @@ import {QuizService} from "../../services/quiz.service";
   templateUrl: 'quiz.html',
 })
 export class QuizPage {
-  private questions :[]=[];
+  private questions: [] = [];
+
+  @ViewChild('slides') slides: any;
+
+  slideOptions: any;
+  flashCardFlipped: boolean = false;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -19,6 +24,10 @@ export class QuizPage {
     console.log('ionViewDidLoad QuizPage', Math.random());
     this.questions = this.quizService.getQuestions();
     console.log("questions", this.questions)
+  }
+
+  selectAnswer() {
+    this.flashCardFlipped = true;
   }
 
 }
