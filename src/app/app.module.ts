@@ -14,7 +14,6 @@ import {CatalogPage} from "../pages/catalog/catalog";
 import {CatalogsService} from "../services/catalogs.service";
 import {GamePage} from "../pages/game/game";
 import {WordPage} from "../pages/word/word";
-import {McqPage} from "../pages/mcq/mcq";
 import {QuizService} from "../services/quiz.service";
 
 @NgModule({
@@ -22,7 +21,7 @@ import {QuizService} from "../services/quiz.service";
     MyApp,
     HomePage,NewCatalogPage,
     NewWordPage, CatalogPage,
-    GamePage,WordPage,McqPage
+    GamePage,WordPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +33,7 @@ import {QuizService} from "../services/quiz.service";
     MyApp,
     HomePage, NewCatalogPage,
     NewWordPage, CatalogPage,
-    GamePage, WordPage, McqPage
+    GamePage, WordPage
   ],
   providers: [
     StatusBar,
