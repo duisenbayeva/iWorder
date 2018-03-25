@@ -23,24 +23,43 @@ export class QuizService {
       );
 
     let questions = [
+
       {
-        question: "Which is the largest country in the world by population?",
-        options: [{option: "India", correct: false, selected: false},
-          {option: "USA", correct: false, selected: false}, {
-            option: "China",
-            correct: true, selected: false
-          }, {option: "Russia", correct: false, selected: false}]
+        "flashCardFront": "<img src='assets/images/helicopter.png' />",
+        "flashCardBack": "Helicopter",
+        "flashCardFlipped": false,
+        "questionText": "What is this?",
+        "answers": [
+          {"answer": "Helicopter", "correct": true, "selected": false},
+          {"answer": "Plane", "correct": false, "selected": false},
+          {"answer": "Truck", "correct": false, "selected": false}
+        ]
       },
       {
-        question: "When did the second world war end?",
-        options: [{option: "1945", correct: true, selected: false},
-          {option: "1939", correct: false, selected: false}, {
-            option: "1944",
-            correct: false,
-            selected: false
-          }, {option: "1942", correct: false, selected: false}]
+        "flashCardFront": "<img src='assets/images/plane.png' />",
+        "flashCardBack": "Plane",
+        "flashCardFlipped": false,
+        "questionText": "What is this?",
+        "answers": [
+          {"answer": "Helicopter", "correct": false, "selected": false},
+          {"answer": "Plane", "correct": true, "selected": false},
+          {"answer": "Truck", "correct": false, "selected": false}
+        ]
+      },
+      {
+        "flashCardFront": "<img src='assets/images/truck.png' />",
+        "flashCardBack": "Truck",
+        "flashCardFlipped": false,
+        "questionText": "What is this?",
+        "answers": [
+          {"answer": "Helicopter", "correct": false, "selected": false},
+          {"answer": "Plane", "correct": false, "selected": false},
+          {"answer": "Truck", "correct": true, "selected": false}
+        ]
       }
+
     ];
+
 
     return questions;
 
