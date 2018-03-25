@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {HomePage} from "../home/home";
+import {QuizPage} from "../quiz/quiz";
 
 @IonicPage()
 @Component({
@@ -17,7 +19,7 @@ export class GamePage {
 
   startMcq(){
     console.log("start mcq")
-    // this.navCtrl.push(McqPage);
+    this.navCtrl.push(QuizPage);
   }
 
 }
