@@ -22,7 +22,8 @@ import {FlashCardComponent} from "../components/flash-card/flash-card";
     MyApp,
     HomePage, NewCatalogPage,
     NewWordPage, CatalogPage,
-    GamePage, WordPage, QuizPage,
+    GamePage, WordPage,
+    QuizPage,
     FlashCardComponent
   ],
   imports: [
@@ -35,13 +36,15 @@ import {FlashCardComponent} from "../components/flash-card/flash-card";
     MyApp,
     HomePage, NewCatalogPage,
     NewWordPage, CatalogPage,
-    GamePage, WordPage, QuizPage
+    GamePage, WordPage,
+    QuizPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CatalogsService, QuizService
+    CatalogsService,
+    QuizService
   ]
 })
 export class AppModule {

@@ -12,11 +12,11 @@ import {Catalog} from "../../model/catalog.model";
   templateUrl: 'home.html'
 })
 export class HomePage {
-  private catalogs: Catalog[] = [];
+  private catalogs: any[] = [];
   private editMode: boolean = false;
   private deleteMode: boolean = false;
 
-  constructor(public navCtrl: NavController, private catalogsService: CatalogsService,private catalogService: CatalogsService) {
+  constructor(public navCtrl: NavController, private catalogsService: CatalogsService, private catalogService: CatalogsService) {
   }
 
   ionViewWillEnter() {

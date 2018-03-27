@@ -22,7 +22,6 @@ export class CatalogsService {
       this.updateCatalogList();
 
     }
-
     console.log("catalog exists")
   }
 
@@ -98,9 +97,9 @@ export class CatalogsService {
     console.log("Catalog was not deleted");
   }
 
-  getCatalog(catalogName){
+  getCatalog(catalogName) {
     let catalogs2 = localStorage.getItem('catalogsMap') ? JSON.parse(localStorage.getItem('catalogsMap')) : {};
-    let catalog = new Catalog(catalogName,[]);
+    let catalog = new Catalog(catalogName, []);
     if (catalogName in catalogs2) {
       catalog.wordList = Object.keys(catalogs2[catalogName].wordList).map(function (val) {
         return catalogs2[catalogName].wordList[val];

@@ -10,11 +10,11 @@ import {QuizService} from "../../services/quiz.service";
 export class QuizPage {
   @ViewChild('slides') slides: any;
 
-  private questions: [] = [];
-  slideOptions: any;
-  flashCardFlipped: boolean = false;
-  hasAnswered: boolean = false;
-  score: number = 0;
+  private questions: any[] = [];
+  private slideOptions: any;
+  private flashCardFlipped: boolean = false;
+  private hasAnswered: boolean = false;
+  private score: number = 0;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -22,17 +22,23 @@ export class QuizPage {
   }
 
   ionViewDidLoad() {
+
     this.slides.lockSwipes(true);
 
-    console.log('ionViewDidLoad QuizPage', Math.random());
-    this.questions = this.quizService.getQuestions().map((question) => {
+    console.log('ionViewDidLoad QuizPage', this.quizService.getQuestions());
+    this.questions = this.quizService.getQuestions()
+      .map((question) => {
 
-      let originalOrder = question.answers;
-      question.answers = this.randomizeAnswers(originalOrder);
-      return question;
+        let originalOrder = question.answers;
+        question.answers = this.randomizeAnswers(originalOrder);
+        return question;
 
-    });
+      });
     console.log("questions", this.questions)
+  }
+
+  ionViewWillEnter() {
+    console.log("will enter")
   }
 
   nextSlide() {

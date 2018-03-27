@@ -16,6 +16,10 @@ export class GamePage {
     console.log('ionViewDidLoad GamePage');
   }
 
+  ionViewWillEnter() {
+    console.log("will enter")
+  }
+
   startMcq() {
     console.log("start mcq");
     this.navCtrl.push(QuizPage);

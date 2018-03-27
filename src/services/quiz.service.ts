@@ -1,26 +1,25 @@
-import {Storage} from "@ionic/storage";
 import {Injectable} from "@angular/core";
-import {CatalogsService} from "./catalogs.service";
-import {Catalog} from "../model/catalog.model";
+
 
 @Injectable()
 export class QuizService {
-  private catalogs: Catalog[] = [];
+  // private catalogs: any[] = [];
 
-  constructor(private catalogsService: CatalogsService, private storage: Storage) {
-  }
+
+  // constructor(private storage: Storage) {
+  // }
 
   getQuestions() {
-    this.storage.get('catalogs')
-      .then(
-        (catalogs) => {
-          this.catalogs = catalogs == null ? [] : catalogs;
-          console.log("catalogs=", this.catalogs);
-          let c = this.getRandomIntInclusive(0, 10);
-          console.log("c=", c, this.catalogs);
-          // return this.catalogs.slice();
-        }
-      );
+    // this.storage.get('catalogs')
+    //   .then(
+    //     (catalogs) => {
+    //       this.catalogs = catalogs == null ? [] : catalogs;
+    //       console.log("catalogs=", this.catalogs);
+    //       let c = this.getRandomIntInclusive(0, 10);
+    //       console.log("c=", c, this.catalogs);
+    //       // return this.catalogs.slice();
+    //     }
+    //   );
 
     let questions = [
 

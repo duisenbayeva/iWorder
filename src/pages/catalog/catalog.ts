@@ -12,7 +12,7 @@ import {WordPage} from "../word/word";
 })
 export class CatalogPage {
   private name: string = "";
-  private words: Word[] = [];
+  private words: any[] = [];
   private editMode: boolean = false;
   private deleteMode: boolean = false;
 
@@ -54,7 +54,7 @@ export class CatalogPage {
     this.navCtrl.push(NewWordPage, {create: false, catalogName: this.name, word: word});
   }
 
-  deleteWord(word, fab: FabContainer){
+  deleteWord(word, fab: FabContainer) {
     event.preventDefault();
     event.stopPropagation();
     console.log("delete word func", word);
@@ -66,11 +66,11 @@ export class CatalogPage {
   openWord(word: Word, fab: FabContainer) {
     console.log("openWord", word);
     fab.close();
-   let wordModal =  this.modalCtrl.create(WordPage, {catalogName: this.name, word: word});
-   wordModal.present();
-   wordModal.onDidDismiss(()=>{
-     this.ionViewWillEnter();
-   })
+    let wordModal = this.modalCtrl.create(WordPage, {catalogName: this.name, word: word});
+    wordModal.present();
+    wordModal.onDidDismiss(() => {
+      this.ionViewWillEnter();
+    })
   }
 
 
