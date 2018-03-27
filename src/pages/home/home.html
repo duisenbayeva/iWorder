@@ -23,9 +23,6 @@
       <button ion-fab *ngIf="catalogs.length!=0" (click)="deleteCatalogMode(fab)">
         <ion-icon name="trash"></ion-icon>
       </button>
-      <button ion-fab (click)="openGame(fab)">
-        <ion-icon name="game-controller-a"></ion-icon>
-      </button>
     </ion-fab-list>
   </ion-fab>
   <ion-list>
@@ -33,8 +30,12 @@
       <div class="catalog-name">
         {{ catalog.catalogName }}
       </div>
-      <button *ngIf="editMode" ion-button small right class="catalog-open-btn" (click)="editCatalog(catalog,fab)"><ion-icon name="brush"></ion-icon></button>
-      <button *ngIf="deleteMode" ion-button small right class="catalog-open-btn" (click)="deleteCatalog(catalog,fab)"><ion-icon name="trash"></ion-icon></button>
+      <button *ngIf="editMode" ion-button small right class="catalog-open-btn" (click)="editCatalog(catalog,fab)">
+        <ion-icon name="brush"></ion-icon>
+      </button>
+      <button *ngIf="deleteMode" ion-button small right class="catalog-open-btn" (click)="deleteCatalog(catalog,fab)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
     </div>
   </ion-list>
   <div class="catalog-container catalog-container-add" *ngIf="catalogs.length==0">

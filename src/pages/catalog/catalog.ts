@@ -4,6 +4,7 @@ import {CatalogsService} from "../../services/catalogs.service";
 import {NewWordPage} from "../new-word/new-word";
 import {Word} from "../../model/word.model";
 import {WordPage} from "../word/word";
+import {GamePage} from "../game/game";
 
 @IonicPage()
 @Component({
@@ -71,6 +72,11 @@ export class CatalogPage {
     wordModal.onDidDismiss(() => {
       this.ionViewWillEnter();
     })
+  }
+
+  openGame(fab: FabContainer) {
+    fab.close();
+    this.navCtrl.push(GamePage);
   }
 
 
