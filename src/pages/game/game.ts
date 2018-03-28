@@ -17,12 +17,12 @@ export class GamePage {
   }
 
   ionViewWillEnter() {
-    console.log("will enter")
+    console.log("will enter", this.navParams, this.navParams.get('catalogName'), this.navParams.get('wordList'))
   }
 
   startMcq() {
     console.log("start mcq");
-    this.navCtrl.push(QuizPage);
+    this.navCtrl.push(QuizPage, this.navParams);
   }
 
 }

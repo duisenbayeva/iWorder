@@ -76,7 +76,11 @@ export class CatalogPage {
 
   openGame(fab: FabContainer) {
     fab.close();
-    this.navCtrl.push(GamePage);
+    console.log(this.name, this.words);
+    if (this.words.length < 3)
+      console.log("You should have 3 words in the catalog to start game session");
+    else
+      this.navCtrl.push(GamePage, {catalogName: this.name, wordList: this.words});
   }
 
 

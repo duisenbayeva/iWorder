@@ -25,7 +25,8 @@ export class QuizPage {
 
     this.slides.lockSwipes(true);
 
-    console.log('ionViewDidLoad QuizPage', this.quizService.getQuestions());
+    console.log('ionViewDidLoad QuizPage', this.quizService.getQuestions2(this.navParams.get('wordList'), 3));
+
     this.questions = this.quizService.getQuestions()
       .map((question) => {
 
@@ -38,7 +39,7 @@ export class QuizPage {
   }
 
   ionViewWillEnter() {
-    console.log("will enter")
+    console.log("will enter", this.navParams.get('catalogName'), this.navParams.get('wordList'))
   }
 
   nextSlide() {
