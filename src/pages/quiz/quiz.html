@@ -21,7 +21,19 @@
 
       <flash-card [isFlipped]="question.flashCardFlipped">
         <div class="flash-card-front" [innerHTML]="question.questionWord.word">front</div>
-        <div class="flash-card-back" [innerHTML]="question.questionWord.translation">back</div>
+        <div class="flash-card-back">
+          <ion-item>
+            <ion-label>Word: {{question.questionWord.word}}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Translation: {{question.questionWord.translation}}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Note: {{question.questionWord.note}}</ion-label>
+          </ion-item>
+        </div>
       </flash-card>
 
       <h3>What is the translation?</h3>
