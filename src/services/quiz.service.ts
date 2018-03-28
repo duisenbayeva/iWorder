@@ -11,22 +11,10 @@ export class QuizService {
   // }
 
   getQuestions() {
-    // this.storage.get('catalogs')
-    //   .then(
-    //     (catalogs) => {
-    //       this.catalogs = catalogs == null ? [] : catalogs;
-    //       console.log("catalogs=", this.catalogs);
-    //       let c = this.getRandomIntInclusive(0, 10);
-    //       console.log("c=", c, this.catalogs);
-    //       // return this.catalogs.slice();
-    //     }
-    //   );
 
     let questions = [
 
       {
-        "flashCardFront": "<img src='assets/images/helicopter.png' />",
-        "flashCardBack": "Helicopter",
         "flashCardFlipped": false,
         "questionText": "What is this?",
         "answers": [
@@ -36,8 +24,6 @@ export class QuizService {
         ]
       },
       {
-        "flashCardFront": "<img src='assets/images/plane.png' />",
-        "flashCardBack": "Plane",
         "flashCardFlipped": false,
         "questionText": "What is this?",
         "answers": [
@@ -47,8 +33,6 @@ export class QuizService {
         ]
       },
       {
-        "flashCardFront": "<img src='assets/images/truck.png' />",
-        "flashCardBack": "Truck",
         "flashCardFlipped": false,
         "questionText": "What is this?",
         "answers": [
@@ -69,15 +53,12 @@ export class QuizService {
     console.log("words =", words, n);
     let array = this.getRandom(words, n);
     let questionArr = new Array(n);
-    console.log("random n=", array, questionArr.length);
     for (let i = 0; i < questionArr.length; i++) {
       questionArr[i] = new Question(array[i], []);
-      // questionArr[i].answers[0] = {answer: array[i].translation, correct: true, selected: false};
       questionArr[i].answers = this.getRandomAnswers(words, 2, array[i]).slice();
-      console.log("getRandomAnswers", array[i], questionArr[i].answers);
     }
-    console.log("Questions ready ", questionArr)
-
+    console.log("Questions ready ", questionArr);
+    return questionArr;
   }
 
   getRandom(arr, n) {
@@ -112,11 +93,5 @@ export class QuizService {
     }
     result.push({answer: w.translation, correct: true, selected: false});
     return result;
-  }
-
-  getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
   }
 }

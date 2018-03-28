@@ -20,11 +20,11 @@
       <h3>Question {{i+1}}</h3>
 
       <flash-card [isFlipped]="question.flashCardFlipped">
-        <div class="flash-card-front" [innerHTML]="question.flashCardFront"></div>
-        <div class="flash-card-back" [innerHTML]="question.flashCardBack"></div>
+        <div class="flash-card-front" [innerHTML]="question.questionWord.word">front</div>
+        <div class="flash-card-back" [innerHTML]="question.questionWord.translation">back</div>
       </flash-card>
 
-      <h3>{{question.questionText}}</h3>
+      <h3>What is the translation?</h3>
 
       <ion-list no-lines radio-group>
 

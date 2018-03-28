@@ -25,9 +25,9 @@ export class QuizPage {
 
     this.slides.lockSwipes(true);
 
-    console.log('ionViewDidLoad QuizPage', this.quizService.getQuestions2(this.navParams.get('wordList'), 3));
+    console.log('ionViewDidLoad QuizPage');
 
-    this.questions = this.quizService.getQuestions()
+    this.questions = this.quizService.getQuestions2(this.navParams.get('wordList'), 3)
       .map((question) => {
 
         let originalOrder = question.answers;
