@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, ElementRef, ViewChild} from "@angular/core";
 import {FabContainer, IonicPage, ModalController, NavController, NavParams} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewWordPage} from "../new-word/new-word";
@@ -17,6 +17,8 @@ export class CatalogPage {
   private editMode: boolean = false;
   private deleteMode: boolean = false;
 
+  @ViewChild('fab') fab: ElementRef;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private catalogService: CatalogsService,
@@ -28,6 +30,11 @@ export class CatalogPage {
     this.name = this.navParams.get('catalog').catalogName;
     // this.words = this.navParams.get('catalog').wordList;
     this.words = this.catalogService.getCatalog(this.navParams.get('catalog').catalogName).wordList;
+  }
+
+  ionViewWillLeave() {
+    console.log("will leave", this.fab);
+    this.fab.close();
   }
 
   addWord(fab: FabContainer) {

@@ -10,46 +10,8 @@ export class QuizService {
   // constructor(private storage: Storage) {
   // }
 
-  getQuestions() {
 
-    let questions = [
-
-      {
-        "flashCardFlipped": false,
-        "questionText": "What is this?",
-        "answers": [
-          {"answer": "Helicopter", "correct": true, "selected": false},
-          {"answer": "Plane", "correct": false, "selected": false},
-          {"answer": "Truck", "correct": false, "selected": false}
-        ]
-      },
-      {
-        "flashCardFlipped": false,
-        "questionText": "What is this?",
-        "answers": [
-          {"answer": "Helicopter", "correct": false, "selected": false},
-          {"answer": "Plane", "correct": true, "selected": false},
-          {"answer": "Truck", "correct": false, "selected": false}
-        ]
-      },
-      {
-        "flashCardFlipped": false,
-        "questionText": "What is this?",
-        "answers": [
-          {"answer": "Helicopter", "correct": false, "selected": false},
-          {"answer": "Plane", "correct": false, "selected": false},
-          {"answer": "Truck", "correct": true, "selected": false}
-        ]
-      }
-
-    ];
-
-
-    return questions;
-
-  }
-
-  getQuestions2(words, n) {
+  getQuestions(words, n) {
     console.log("words =", words, n);
     let array = this.getRandom(words, n);
     let questionArr = new Array(n);

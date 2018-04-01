@@ -27,7 +27,7 @@ export class QuizPage {
 
     console.log('ionViewDidLoad QuizPage');
 
-    this.questions = this.quizService.getQuestions2(this.navParams.get('wordList'), 3)
+    this.questions = this.quizService.getQuestions(this.navParams.get('wordList'), 3)
       .map((question) => {
 
         let originalOrder = question.answers;

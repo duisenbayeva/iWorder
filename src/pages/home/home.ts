@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, ElementRef, ViewChild} from "@angular/core";
 import {FabContainer, NavController} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
@@ -16,6 +16,8 @@ export class HomePage {
   private editMode: boolean = false;
   private deleteMode: boolean = false;
 
+  @ViewChild('fab') fab: ElementRef;
+
   constructor(public navCtrl: NavController, private catalogsService: CatalogsService, private catalogService: CatalogsService) {
   }
 
@@ -23,6 +25,11 @@ export class HomePage {
     this.catalogsService.getCatalogs().then(
       (catalogs) => this.catalogs = catalogs
     );
+  }
+
+  ionViewWillLeave() {
+    console.log("will leave", this.fab);
+    this.fab.close();
   }
 
   createCatalog(fab: FabContainer) {
@@ -46,7 +53,7 @@ export class HomePage {
     event.preventDefault();
     event.stopPropagation();
     console.log("edit catalog func", catalog);
-    fab.close();
+    // fab.close();
     this.navCtrl.push(NewCatalogPage, {"create": false, "catalogName": catalog.catalogName});
   }
 
@@ -59,14 +66,14 @@ export class HomePage {
   }
 
   openCatalog(catalog: Catalog, fab: FabContainer) {
-    fab.close();
+    // fab.close();
     console.log("cat to send", catalog);
     this.navCtrl.push(CatalogPage, {"catalog": catalog});
 
   }
 
   openGame(fab: FabContainer) {
-    fab.close();
+    // fab.close();
     this.navCtrl.push(GamePage);
   }
 }
