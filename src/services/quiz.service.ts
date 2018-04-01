@@ -11,13 +11,13 @@ export class QuizService {
   // }
 
 
-  getQuestions(words, n) {
+  getQuestions(words, n, v) {
     console.log("words =", words, n);
     let array = this.getRandom(words, n);
     let questionArr = new Array(n);
     for (let i = 0; i < questionArr.length; i++) {
       questionArr[i] = new Question(array[i], []);
-      questionArr[i].answers = this.getRandomAnswers(words, 2, array[i]).slice();
+      questionArr[i].answers = this.getRandomAnswers(words, v, array[i]).slice();
     }
     console.log("Questions ready ", questionArr);
     return questionArr;

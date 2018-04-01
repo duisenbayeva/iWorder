@@ -36,19 +36,22 @@
         </div>
       </flash-card>
 
-      <h3>What is the translation?</h3>
+      <h3>Choose correct translation</h3>
 
-      <ion-list no-lines radio-group>
+      <ion-list radio-group>
 
-        <ion-item *ngFor="let answer of question.answers; let i = index;">
+        <ion-item *ngFor="let answer of question.answers;">
 
-          <ion-label>{{i+1}}. {{answer.answer}}</ion-label>
+          <ion-label>{{answer.answer}}</ion-label>
           <ion-radio (click)="selectAnswer(answer, question)" [checked]="answer.selected"
                      [disabled]="hasAnswered"></ion-radio>
 
         </ion-item>
-
       </ion-list>
+
+      <button ion-button (click)="nextQuestion()">
+        Next
+      </button>
 
     </ion-slide>
 

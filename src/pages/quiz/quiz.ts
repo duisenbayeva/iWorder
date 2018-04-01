@@ -15,6 +15,8 @@ export class QuizPage {
   private flashCardFlipped: boolean = false;
   private hasAnswered: boolean = false;
   private score: number = 0;
+  private questionsNumber: number = 5;
+  private choicesNumber: number = 4;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -27,7 +29,7 @@ export class QuizPage {
 
     console.log('ionViewDidLoad QuizPage');
 
-    this.questions = this.quizService.getQuestions(this.navParams.get('wordList'), 3)
+    this.questions = this.quizService.getQuestions(this.navParams.get('wordList'), this.questionsNumber, this.choicesNumber - 1)
       .map((question) => {
 
         let originalOrder = question.answers;
@@ -57,13 +59,14 @@ export class QuizPage {
     if (answer.correct) {
       this.score++;
     }
+  }
 
-    setTimeout(() => {
-      this.hasAnswered = false;
-      this.nextSlide();
-      answer.selected = false;
-      question.flashCardFlipped = false;
-    }, 3000);
+  nextQuestion() {
+    this.hasAnswered = false;
+    this.nextSlide();
+    // answer.selected = false;
+    // question.flashCardFlipped = false;
+
   }
 
 
@@ -85,6 +88,8 @@ export class QuizPage {
     this.slides.lockSwipes(false);
     this.slides.slideTo(1, 1000);
     this.slides.lockSwipes(true);
+
+    // ionViewDidLoad();
   }
 
 }
