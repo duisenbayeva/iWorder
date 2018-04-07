@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from "@angular/core";
+import {Component, ViewChild} from "@angular/core";
 import {FabContainer, IonicPage, ModalController, NavController, NavParams} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewWordPage} from "../new-word/new-word";
@@ -17,7 +17,7 @@ export class CatalogPage {
   private editMode: boolean = false;
   private deleteMode: boolean = false;
 
-  @ViewChild('fab') fab: ElementRef;
+  @ViewChild(FabContainer) fab: FabContainer;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
