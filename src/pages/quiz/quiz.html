@@ -17,26 +17,23 @@
 
     <ion-slide *ngFor="let question of questions; let i = index;">
 
-      <h3>Question {{i+1}}</h3>
-
       <flash-card [isFlipped]="question.flashCardFlipped">
-        <div class="flash-card-front" [innerHTML]="question.questionWord.word">front</div>
-        <div class="flash-card-back">
-          <ion-item>
-            <ion-label>Word: {{question.questionWord.word}}</ion-label>
-          </ion-item>
+        <div class="flash-card-front" color="primary"><h2 class="answer-word">{{question.questionWord.word}}</h2></div>
+        <div class="flash-card-back" color="primary">
 
-          <ion-item>
-            <ion-label>Translation: {{question.questionWord.translation}}</ion-label>
-          </ion-item>
+          <p class="answer-title">word:</p>
+          <p class="answer-word">{{question.questionWord.word}}</p>
 
-          <ion-item>
-            <ion-label>Note: {{question.questionWord.note}}</ion-label>
-          </ion-item>
+          <p class="answer-title">translation:</p>
+          <p class="answer-word">{{question.questionWord.translation}}</p>
+
+          <p class="answer-title">note:</p>
+          <p class="answer-word">{{question.questionWord.note}}</p>
+
         </div>
       </flash-card>
 
-      <h3>Choose correct translation</h3>
+      <h3>{{i+1}}/{{questions.length}} Choose correct translation</h3>
 
       <ion-list radio-group>
 
@@ -49,7 +46,7 @@
         </ion-item>
       </ion-list>
 
-      <button ion-button (click)="nextQuestion()">
+      <button ion-button (click)="nextQuestion()" class="next-button" [disabled]="!hasAnswered">
         Next
       </button>
 
