@@ -64,8 +64,6 @@ export class QuizPage {
   nextQuestion() {
     this.hasAnswered = false;
     this.nextSlide();
-    // answer.selected = false;
-    // question.flashCardFlipped = false;
 
   }
 
@@ -84,12 +82,15 @@ export class QuizPage {
   }
 
   restartQuiz() {
+
+    this.ionViewDidLoad();
+
     this.score = 0;
     this.slides.lockSwipes(false);
-    this.slides.slideTo(1, 1000);
+    this.slides.slideTo(1, 0);
     this.slides.lockSwipes(true);
 
-    // ionViewDidLoad();
+
   }
 
 }
