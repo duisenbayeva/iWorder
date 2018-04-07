@@ -45,5 +45,19 @@
     color: #8c8c8c;
     font-style: italic;
   }
+
+  .question-text {
+    color: #2d2d2d;
+    font-weight: bold;
+
+    .answer-correct-text {
+      color: #21b94e;
+    }
+
+    .answer-wrong-text {
+      color: #f30d0d;
+    }
+  }
+
 }
 

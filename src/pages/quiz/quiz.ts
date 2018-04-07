@@ -14,6 +14,7 @@ export class QuizPage {
   private slideOptions: any;
   private flashCardFlipped: boolean = false;
   private hasAnswered: boolean = false;
+  private isCorrect: boolean = false;
   private score: number = 0;
   private questionsNumber: number = 5;
   private choicesNumber: number = 4;
@@ -57,7 +58,10 @@ export class QuizPage {
     question.flashCardFlipped = true;
 
     if (answer.correct) {
+      this.isCorrect = true;
       this.score++;
+    } else {
+      this.isCorrect = false;
     }
   }
 
