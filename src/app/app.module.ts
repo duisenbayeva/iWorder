@@ -17,6 +17,10 @@ import {WordPage} from "../pages/word/word";
 import {QuizService} from "../services/quiz.service";
 import {QuizPage} from "../pages/quiz/quiz";
 import {FlashCardComponent} from "../components/flash-card/flash-card";
+
+import {Media} from "@ionic-native/media";
+import {File} from "@ionic-native/file";
+
 @NgModule({
   declarations: [
     MyApp,
@@ -44,7 +48,9 @@ import {FlashCardComponent} from "../components/flash-card/flash-card";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CatalogsService,
-    QuizService
+    QuizService,
+    Media,
+    File
   ]
 })
 export class AppModule {
