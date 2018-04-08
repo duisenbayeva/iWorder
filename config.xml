@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>iWorder</name>
-    <description>An awesome Ionic/Cordova app .Worder</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets">
+    <name>Worder</name>
+    <description>Your dictionary to keep new words</description>
+    <author email="b.duisenbayeva@gmail.com">Balnur Duisenbayeva</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -85,5 +85,5 @@
     <allow-navigation href="*" />
     <content src="index.html" />
     <content original-src="index.html" />
-    <engine name="android" spec="~7.1.0" />
+    <engine name="android" spec="7.1.0" />
 </widget>
