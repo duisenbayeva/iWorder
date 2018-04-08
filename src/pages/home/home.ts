@@ -1,5 +1,5 @@
 import {Component, ViewChild} from "@angular/core";
-import {FabContainer, NavController} from "ionic-angular";
+import {AlertController, FabContainer, NavController} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
 import {CatalogPage} from "../catalog/catalog";
@@ -18,7 +18,10 @@ export class HomePage {
 
   @ViewChild(FabContainer) fab: FabContainer;
 
-  constructor(public navCtrl: NavController, private catalogsService: CatalogsService, private catalogService: CatalogsService) {
+  constructor(public navCtrl: NavController,
+              private catalogsService: CatalogsService,
+              private catalogService: CatalogsService,
+              public alertCtrl: AlertController) {
   }
 
   ionViewWillEnter() {
@@ -30,6 +33,8 @@ export class HomePage {
   ionViewWillLeave() {
     console.log("will leave", this.fab);
     this.fab.close();
+    this.editMode = false;
+    this.deleteMode = false;
   }
 
   createCatalog(fab: FabContainer) {
@@ -61,8 +66,7 @@ export class HomePage {
     event.preventDefault();
     event.stopPropagation();
     fab.close();
-    this.catalogService.deleteCatalog(catalog.catalogName);
-    this.ionViewWillEnter();
+    this.showConfirm(catalog.catalogName);
   }
 
   openCatalog(catalog: Catalog, fab: FabContainer) {
@@ -75,5 +79,28 @@ export class HomePage {
   openGame(fab: FabContainer) {
     // fab.close();
     this.navCtrl.push(GamePage);
+  }
+
+  showConfirm(catalogName) {
+    let confirm = this.alertCtrl.create({
+      title: 'Delete',
+      message: "Are you sure to delete catalog " + catalogName + "? It may contain words",
+      buttons: [
+        {
+          text: 'cancel',
+          handler: () => {
+            // alert('Disagree clicked');
+          }
+        },
+        {
+          text: 'delete',
+          handler: () => {
+            this.catalogService.deleteCatalog(catalogName);
+            this.navCtrl.setRoot(this.navCtrl.getActive().component);
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 }

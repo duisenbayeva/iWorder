@@ -1,5 +1,5 @@
 import {Component, ViewChild} from "@angular/core";
-import {FabContainer, IonicPage, ModalController, NavController, NavParams} from "ionic-angular";
+import {AlertController, FabContainer, IonicPage, ModalController, NavController, NavParams} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewWordPage} from "../new-word/new-word";
 import {Word} from "../../model/word.model";
@@ -22,7 +22,8 @@ export class CatalogPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private catalogService: CatalogsService,
-              private modalCtrl: ModalController) {
+              private modalCtrl: ModalController,
+              public alertCtrl: AlertController) {
   }
 
   ionViewWillEnter() {
@@ -35,6 +36,8 @@ export class CatalogPage {
   ionViewWillLeave() {
     console.log("will leave", this.fab);
     this.fab.close();
+    this.editMode = false;
+    this.deleteMode = false;
   }
 
   addWord(fab: FabContainer) {
@@ -67,8 +70,7 @@ export class CatalogPage {
     event.stopPropagation();
     console.log("delete word func", word);
     fab.close();
-    this.catalogService.deleteWord(word);
-    this.ionViewWillEnter();
+    this.showConfirm(word);
   }
 
   openWord(word: Word, fab: FabContainer) {
@@ -90,5 +92,27 @@ export class CatalogPage {
       this.navCtrl.push(GamePage, {catalogName: this.name, wordList: this.words});
   }
 
+  showConfirm(word) {
+    let confirm = this.alertCtrl.create({
+      title: 'Delete',
+      message: "Are you sure to delete word " + word.word + "?",
+      buttons: [
+        {
+          text: 'cancel',
+          handler: () => {
+            // alert('Disagree clicked');
+          }
+        },
+        {
+          text: 'delete',
+          handler: () => {
+            this.catalogService.deleteWord(word);
+            this.ionViewWillEnter();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 
 }

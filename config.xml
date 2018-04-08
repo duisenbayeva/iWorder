@@ -86,4 +86,5 @@
     <content src="index.html" />
     <content original-src="index.html" />
     <engine name="android" spec="7.1.0" />
+    <allow-navigation href="http://192.168.1.102:8101" />
 </widget>

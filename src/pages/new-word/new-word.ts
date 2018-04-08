@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {IonicPage, NavController, NavParams} from "ionic-angular";
+import {AlertController, IonicPage, NavController, NavParams} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {Word} from "../../model/word.model";
 
@@ -16,7 +16,8 @@ export class NewWordPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private catalogsService: CatalogsService) {
+              private catalogsService: CatalogsService,
+              public alertCtrl: AlertController) {
   }
 
   ionViewWillEnter() {
@@ -43,8 +44,30 @@ export class NewWordPage {
   }
 
   onDeleteWord() {
-    this.catalogsService.deleteWord(this.word);
-    this.navCtrl.pop();
+    this.showConfirm(this.word);
+  }
+
+  showConfirm(word) {
+    let confirm = this.alertCtrl.create({
+      title: 'Delete',
+      message: "Are you sure to delete word " + word.word + "?",
+      buttons: [
+        {
+          text: 'cancel',
+          handler: () => {
+            // alert('Disagree clicked');
+          }
+        },
+        {
+          text: 'delete',
+          handler: () => {
+            this.catalogsService.deleteWord(word);
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
 
