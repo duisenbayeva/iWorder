@@ -125,4 +125,8 @@ export class NewWordPage {
     this.audio.setVolume(0.8);
   }
 
+  onDeleteWordRecord() {
+    alert("delete record", this.word.recordFileName);
+  }
+
 }

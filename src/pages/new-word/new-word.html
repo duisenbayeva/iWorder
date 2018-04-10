@@ -30,27 +30,33 @@
         <ion-input type="text" name="note" [(ngModel)]="word.note"></ion-input>
       </ion-item>
 
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title>
+            <button ion-button primary (click)="stopRecord()" *ngIf="recording">
+              <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;Stop Record
+            </button>
+            <button ion-button primary (click)="startRecord()" *ngIf="!recording">
+              <ion-icon name="mic"></ion-icon>&nbsp;&nbsp;Start Record
+            </button>
+          </ion-card-title>
+        </ion-card-content>
+
+        <ion-card-content *ngIf="word.recordFileName">
+          <p>{{word.recordFileName}}</p>
+          <button ion-button clear item-end large (click)="playAudio(word.recordFileName)">
+            <ion-icon name="play"></ion-icon>
+          </button>
+          <button ion-button icon-only (click)="onDeleteWordRecord()">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-card-content>
+      </ion-card>
+
+
       <button ion-button block type="submit" [disabled]="!f.valid">{{create? "add":"edit"}}</button>
     </form>
   </ion-list>
 
-  <ion-card>
-    <ion-card-content>
-      <ion-card-title>
-        <button ion-button primary (click)="stopRecord()" *ngIf="recording">
-          <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;Stop Record
-        </button>
-        <button ion-button primary (click)="startRecord()" *ngIf="!recording">
-          <ion-icon name="mic"></ion-icon>&nbsp;&nbsp;Start Record
-        </button>
-      </ion-card-title>
-    </ion-card-content>
-  </ion-card>
-  <ion-item>
-    <p>{{word.recordFileName}}</p>
-    <button ion-button clear item-end large (click)="playAudio(word.recordFileName)">
-      <ion-icon name="play"></ion-icon>
-    </button>
-  </ion-item>
 
 </ion-content>

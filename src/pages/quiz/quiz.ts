@@ -10,14 +10,13 @@ import {QuizService} from "../../services/quiz.service";
 export class QuizPage {
   @ViewChild('slides') slides: any;
 
-  private questions: any[] = [];
-  private slideOptions: any;
-  private flashCardFlipped: boolean = false;
-  private hasAnswered: boolean = false;
-  private isCorrect: boolean = false;
-  private score: number = 0;
-  private questionsNumber: number = 5;
-  private choicesNumber: number = 4;
+  questions: any[] = [];
+  flashCardFlipped: boolean;
+  hasAnswered: boolean;
+  isCorrect: boolean;
+  score: number;
+  questionsNumber: number = 5;
+  choicesNumber: number = 4;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -42,7 +41,12 @@ export class QuizPage {
   }
 
   ionViewWillEnter() {
-    console.log("will enter", this.navParams.get('catalogName'), this.navParams.get('wordList'))
+    console.log("will enter", this.navParams.get('catalogName'), this.navParams.get('wordList'));
+    this.score = 0;
+    this.isCorrect = false;
+    this.hasAnswered = false;
+    this.flashCardFlipped = false;
+
   }
 
   nextSlide() {
