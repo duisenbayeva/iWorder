@@ -41,7 +41,6 @@ export class NewWordPage {
       this.word = new Word("", "", "", this.navParams.get('catalogName'))
     }
     console.log("create=", this.create, this.word)
-    this.getAudioList();
   }
 
   onAddWord() {
@@ -82,12 +81,6 @@ export class NewWordPage {
     confirm.present();
   }
 
-  getAudioList() {
-    if (localStorage.getItem("audiolist")) {
-      this.audioList = JSON.parse(localStorage.getItem("audiolist"));
-      console.log(this.audioList);
-    }
-  }
 
   startRecord() {
     if (this.platform.is('ios')) {
@@ -105,15 +98,11 @@ export class NewWordPage {
 
   stopRecord() {
     this.audio.stopRecord();
-    let data = {filename: this.fileName};
-    this.audioList.push(data);
-    localStorage.setItem("audiolist", JSON.stringify(this.audioList));
     this.word.recordFileName = this.fileName;
     this.recording = false;
-    this.getAudioList();
   }
 
-  playAudio(file, idx) {
+  playAudio(file) {
     if (this.platform.is('ios')) {
       this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + file;
       this.audio = this.media.create(this.filePath);
@@ -126,7 +115,7 @@ export class NewWordPage {
   }
 
   onDeleteWordRecord() {
-    alert("delete record", this.word.recordFileName);
+    console.log("delete record", this.word.recordFileName);
   }
 
 }

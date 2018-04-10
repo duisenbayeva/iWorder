@@ -31,7 +31,7 @@
       </ion-item>
 
       <ion-card>
-        <ion-card-content>
+        <ion-card-content *ngIf="!word.recordFileName">
           <ion-card-title>
             <button ion-button primary (click)="stopRecord()" *ngIf="recording">
               <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;Stop Record
