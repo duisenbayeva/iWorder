@@ -20,7 +20,6 @@ export class NewWordPage {
   filePath: string;
   fileName: string;
   audio: MediaObject;
-  audioList: any[] = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,

@@ -5,6 +5,11 @@
         <ion-icon name="trash"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Word</ion-title>
   </ion-navbar>
 
@@ -26,7 +31,15 @@
       <ion-label>Note: {{word.note}}</ion-label>
     </ion-item>
 
-    <button ion-button block (click)="dismiss()">back</button>
+    <ion-card-content *ngIf="word.recordFileName">
+      <p>{{word.recordFileName}}</p>
+      <button ion-button clear item-end large (click)="playAudio(word.recordFileName)">
+        <ion-icon name="play"></ion-icon>
+      </button>
+
+    </ion-card-content>
+
+    <button ion-button block (click)="dismiss()">close</button>
   </ion-list>
 
 </ion-content>
