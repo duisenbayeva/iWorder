@@ -3,6 +3,7 @@ export class Word {
   public translation: string;
   public note: string;
   public catalog: string;
+  public recordFileName: string;
 
 
   constructor(word: string, translation: string, note: string, catalog: string) {
