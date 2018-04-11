@@ -3,7 +3,7 @@ import {AlertController, IonicPage, NavController, NavParams, Platform, ViewCont
 import {Word} from "../../model/word.model";
 import {CatalogsService} from "../../services/catalogs.service";
 
-import {Media} from "@ionic-native/media";
+import {Media, MediaObject} from "@ionic-native/media";
 import {File} from "@ionic-native/file";
 
 @IonicPage()

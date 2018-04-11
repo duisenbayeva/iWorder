@@ -2,6 +2,7 @@ import {Storage} from "@ionic/storage";
 import {Injectable} from "@angular/core";
 import {Word} from "../model/word.model";
 import {Catalog} from "../model/catalog.model";
+import {ToastController} from "ionic-angular";
 
 @Injectable()
 export class CatalogsService {
@@ -9,7 +10,7 @@ export class CatalogsService {
   private catalogs: Catalog[] = [];
   private catalogs2: {} = {};
 
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage, private toastCtrl: ToastController) {
   }
 
   addCatalog(catalogName) {
@@ -20,9 +21,10 @@ export class CatalogsService {
       catalogs2[catalogName] = {"catalogName": catalogName, "wordList": {}};
       localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
       this.updateCatalogList();
-
+      this.presentToast("Catalog was successfully created");
+      return;
     }
-    console.log("catalog exists")
+    this.presentToast("Catalog was not created, some error occurred");
   }
 
   getCatalogs() {
@@ -46,8 +48,9 @@ export class CatalogsService {
       delete catalogs2[catalogName];
       localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
       this.updateCatalogList();
+      this.presentToast("Catalog was successfully edited");
     } else {
-      console.log("was not found to edit")
+      this.presentToast("Catalog was not found");
     }
   }
 
@@ -60,12 +63,11 @@ export class CatalogsService {
         catalogs2[word.catalog].wordList[word.word] = word;
         localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
         this.updateCatalogList();
+        this.presentToast("Word was successfully created");
         return;
       }
     }
-
-    console.log("Word was not added");
-
+    this.presentToast("Word was not added, some error occurred");
   }
 
   editWord(word: Word, newWord: Word) {
@@ -78,10 +80,11 @@ export class CatalogsService {
         catalogs2[newWord.catalog].wordList[newWord.word] = newWord;
         localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
         this.updateCatalogList();
+        this.presentToast("Word was successfully edited");
         return;
       }
     }
-    console.log("Word was not added");
+    this.presentToast("Word was not edited, some error occurred");
 
   }
 
@@ -92,9 +95,10 @@ export class CatalogsService {
       delete catalogs2[catalogName];
       localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
       this.updateCatalogList();
+      this.presentToast("Catalog was deleted successfully");
       return;
     }
-    console.log("Catalog was not deleted");
+    this.presentToast("Catalog was not deleted, some error occurred");
   }
 
   getCatalog(catalogName) {
@@ -117,10 +121,11 @@ export class CatalogsService {
         delete catalogs2[word.catalog].wordList[word.word];
         localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
         this.updateCatalogList();
+        this.presentToast("Word was deleted successfully");
         return;
       }
     }
-    console.log("Word was not deleted");
+    this.presentToast("Word was not deleted, some error occurred");
   }
 
   updateCatalogList = function () {
@@ -133,6 +138,20 @@ export class CatalogsService {
       return catalogs2[val];
     });
     this.storage.set('catalogs', this.catalogs);
+  }
+
+  presentToast(toastMessage) {
+    let toast = this.toastCtrl.create({
+      message: toastMessage,
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 
 }
