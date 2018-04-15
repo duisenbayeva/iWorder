@@ -20,6 +20,19 @@ import {FlashCardComponent} from "../components/flash-card/flash-card";
 
 import {Media} from "@ionic-native/media";
 import {File} from "@ionic-native/file";
+import {AuthProvider} from "../providers/auth/auth";
+import {AngularFireAuthModule} from "angularfire2/auth";
+import {AngularFireModule} from "angularfire2";
+import {LoginPage} from "../pages/login/login";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC8EakuoSZGOPVe9FCE8lzFy5EAhezszOM",
+  authDomain: "worder-5c89a.firebaseapp.com",
+  databaseURL: "https://worder-5c89a.firebaseio.com",
+  projectId: "worder-5c89a",
+  storageBucket: "worder-5c89a.appspot.com",
+  messagingSenderId: "846607388450"
+};
 
 @NgModule({
   declarations: [
@@ -27,12 +40,14 @@ import {File} from "@ionic-native/file";
     HomePage, NewCatalogPage,
     NewWordPage, CatalogPage,
     GamePage, WordPage,
-    QuizPage,
+    QuizPage, LoginPage,
     FlashCardComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -41,7 +56,7 @@ import {File} from "@ionic-native/file";
     HomePage, NewCatalogPage,
     NewWordPage, CatalogPage,
     GamePage, WordPage,
-    QuizPage
+    QuizPage, LoginPage
   ],
   providers: [
     StatusBar,
@@ -50,7 +65,8 @@ import {File} from "@ionic-native/file";
     CatalogsService,
     QuizService,
     Media,
-    File
+    File,
+    AuthProvider
   ]
 })
 export class AppModule {
