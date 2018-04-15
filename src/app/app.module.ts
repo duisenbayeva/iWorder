@@ -23,7 +23,6 @@ import {File} from "@ionic-native/file";
 import {AuthProvider} from "../providers/auth/auth";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireModule} from "angularfire2";
-import {LoginPage} from "../pages/login/login";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC8EakuoSZGOPVe9FCE8lzFy5EAhezszOM",
@@ -40,7 +39,7 @@ const firebaseConfig = {
     HomePage, NewCatalogPage,
     NewWordPage, CatalogPage,
     GamePage, WordPage,
-    QuizPage, LoginPage,
+    QuizPage,
     FlashCardComponent
   ],
   imports: [
@@ -56,7 +55,7 @@ const firebaseConfig = {
     HomePage, NewCatalogPage,
     NewWordPage, CatalogPage,
     GamePage, WordPage,
-    QuizPage, LoginPage
+    QuizPage
   ],
   providers: [
     StatusBar,
