@@ -23,6 +23,9 @@
       <button ion-fab *ngIf="catalogs.length!=0" (click)="deleteCatalogMode(fab)">
         <ion-icon name="trash"></ion-icon>
       </button>
+      <button ion-fab (click)="logoutUser(fab)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
     </ion-fab-list>
   </ion-fab>
   <ion-list>

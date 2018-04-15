@@ -1,12 +1,14 @@
 import {Component, ViewChild} from "@angular/core";
-import {AlertController, FabContainer, NavController} from "ionic-angular";
+import {AlertController, FabContainer, IonicPage, NavController} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
 import {CatalogPage} from "../catalog/catalog";
 import {GamePage} from "../game/game";
 import {Catalog} from "../../model/catalog.model";
+import {AuthProvider} from "../../providers/auth/auth";
+import {LoginPage} from "../login/login";
 
-
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -21,7 +23,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               private catalogsService: CatalogsService,
               private catalogService: CatalogsService,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController, public authData: AuthProvider) {
   }
 
   ionViewWillEnter() {
@@ -102,5 +104,27 @@ export class HomePage {
       ]
     });
     confirm.present();
+  }
+
+  logoutUser() {
+    console.log("log out");
+    this.authData.logoutUser()
+      .then(() => {
+        this.navCtrl.setRoot(LoginPage);
+      }, (error) => {
+        this.loading.dismiss().then(() => {
+          var errorMessage: string = error.message;
+          let alert = this.alertCtrl.create({
+            message: errorMessage,
+            buttons: [
+              {
+                text: "Ok",
+                role: 'cancel'
+              }
+            ]
+          });
+          alert.present();
+        });
+      });
   }
 }

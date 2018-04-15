@@ -6,7 +6,6 @@ import {StatusBar} from "@ionic-native/status-bar";
 import {IonicStorageModule} from "@ionic/storage";
 
 import {MyApp} from "./app.component";
-import {HomePage} from "../pages/home/home";
 import {NewCatalogPage} from "../pages/new-catalog/new-catalog";
 import {NewWordPage} from "../pages/new-word/new-word";
 import {CatalogPage} from "../pages/catalog/catalog";
@@ -23,6 +22,7 @@ import {File} from "@ionic-native/file";
 import {AuthProvider} from "../providers/auth/auth";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireModule} from "angularfire2";
+import {HomePage} from "../pages/home/home";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC8EakuoSZGOPVe9FCE8lzFy5EAhezszOM",
@@ -35,8 +35,8 @@ const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage, NewCatalogPage,
+    MyApp, HomePage,
+    NewCatalogPage,
     NewWordPage, CatalogPage,
     GamePage, WordPage,
     QuizPage,
