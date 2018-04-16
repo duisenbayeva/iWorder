@@ -22,7 +22,6 @@ import {File} from "@ionic-native/file";
 import {AuthProvider} from "../providers/auth/auth";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireModule} from "angularfire2";
-import {HomePage} from "../pages/home/home";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC8EakuoSZGOPVe9FCE8lzFy5EAhezszOM",
@@ -35,7 +34,7 @@ const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    MyApp, HomePage,
+    MyApp,
     NewCatalogPage,
     NewWordPage, CatalogPage,
     GamePage, WordPage,
@@ -52,7 +51,7 @@ const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage, NewCatalogPage,
+    NewCatalogPage,
     NewWordPage, CatalogPage,
     GamePage, WordPage,
     QuizPage

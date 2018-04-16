@@ -1,5 +1,5 @@
 import {Component, ViewChild} from "@angular/core";
-import {AlertController, FabContainer, IonicPage, NavController} from "ionic-angular";
+import {AlertController, FabContainer, IonicPage, Loading, NavController} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
 import {CatalogPage} from "../catalog/catalog";
@@ -17,6 +17,8 @@ export class HomePage {
   private catalogs: any[] = [];
   private editMode: boolean = false;
   private deleteMode: boolean = false;
+
+  public loading: Loading;
 
   @ViewChild(FabContainer) fab: FabContainer;
 
@@ -110,7 +112,7 @@ export class HomePage {
     console.log("log out");
     this.authData.logoutUser()
       .then(() => {
-        this.navCtrl.setRoot(LoginPage);
+        this.navCtrl.setRoot('LoginPage');
       }, (error) => {
         this.loading.dismiss().then(() => {
           var errorMessage: string = error.message;
