@@ -40,8 +40,10 @@
   </ion-list>
   <div class="catalog-container catalog-container-add" *ngIf="catalogs.length==0">
     <div class="catalog-name">
-      Add your first catalog
+      {{'ADDCATALOG'| translate}}
     </div>
-    <button ion-button block class="catalog-open-btn catalog-add-button" (click)="createCatalog(fab)">add</button>
+    <button ion-button block class="catalog-open-btn catalog-add-button" (click)="createCatalog(fab)">{{'ADDBTN'|
+      translate}}
+    </button>
   </div>
 </ion-content>

@@ -16,7 +16,8 @@
         <ion-input type="text" name="catalogName" [(ngModel)]="catalogName" required></ion-input>
       </ion-item>
 
-      <button ion-button block type="submit" [disabled]="!f.valid">{{create? "add":"edit"}}</button>
+      <button ion-button block type="submit" [disabled]="!f.valid">{{create? ('ADDBTN'|translate) :"edit"}}
+      </button>
     </form>
   </ion-list>
 </ion-content>
