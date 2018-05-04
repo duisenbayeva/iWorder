@@ -21,6 +21,13 @@ import {FlashCardComponent} from "../components/flash-card/flash-card";
 import {Media} from "@ionic-native/media";
 import {File} from "@ionic-native/file";
 
+import {Http, HttpModule} from "@angular/http";
+import {TranslateLoader, TranslateModule, TranslateStaticLoader} from "ng2-translate";
+
+export function createTranslateLoader(http: Http) {
+  return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -33,7 +40,13 @@ import {File} from "@ionic-native/file";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    HttpModule,
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [Http]
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
