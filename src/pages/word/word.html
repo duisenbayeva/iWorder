@@ -10,7 +10,7 @@
         <ion-icon name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Word</ion-title>
+    <ion-title>{{'WORD'|translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,15 +20,15 @@
   <ion-list>
 
     <ion-item>
-      <ion-label>Word: {{word.word}}</ion-label>
+      <ion-label>{{'WORD'|translate}}: {{word.word}}</ion-label>
     </ion-item>
 
     <ion-item>
-      <ion-label>Translation: {{word.translation}}</ion-label>
+      <ion-label>{{'TRANSLATION'|translate}}: {{word.translation}}</ion-label>
     </ion-item>
 
     <ion-item>
-      <ion-label>Note: {{word.note}}</ion-label>
+      <ion-label>{{'NOTE'|translate}}: {{word.note}}</ion-label>
     </ion-item>
 
     <ion-card-content *ngIf="word.recordFileName">
@@ -39,7 +39,7 @@
 
     </ion-card-content>
 
-    <button ion-button block (click)="dismiss()">close</button>
+    <button ion-button block (click)="dismiss()">{{'BACK'|translate}}</button>
   </ion-list>
 
 </ion-content>

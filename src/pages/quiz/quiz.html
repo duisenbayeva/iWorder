@@ -12,7 +12,7 @@
   <ion-slides #slides>
 
     <ion-slide class="start-slide">
-      <button ion-button color="primary" (click)="nextSlide()">Start!</button>
+      <button ion-button color="primary" (click)="nextSlide()">{{'START'|translate}}!</button>
     </ion-slide>
 
     <ion-slide *ngFor="let question of questions; let i = index;">
@@ -21,22 +21,24 @@
         <div class="flash-card-front" color="primary"><h2 class="answer-word">{{question.questionWord.word}}</h2></div>
         <div class="flash-card-back" color="primary">
 
-          <p class="answer-title">word:</p>
+          <p class="answer-title">{{'WORD'|translate}}:</p>
           <p class="answer-word">{{question.questionWord.word}}</p>
 
-          <p class="answer-title">translation:</p>
+          <p class="answer-title">{{'TRANSLATION'|translate}}:</p>
           <p class="answer-word">{{question.questionWord.translation}}</p>
 
-          <p class="answer-title">note:</p>
+          <p class="answer-title">{{'NOTE'|translate}}:</p>
           <p class="answer-word">{{question.questionWord.note}}</p>
 
         </div>
       </flash-card>
 
       <div class="question-text">
-        <p *ngIf="!hasAnswered">{{i+1}}/{{questions.length}} Choose correct translation</p>
-        <p class="answer-correct-text" *ngIf="hasAnswered && isCorrect">{{i+1}}/{{questions.length}} Correct!</p>
-        <p class="answer-wrong-text" *ngIf="hasAnswered && !isCorrect">{{i+1}}/{{questions.length}} Incorrect!</p>
+        <p *ngIf="!hasAnswered">{{i+1}}/{{questions.length}} {{'CHOOSE'|translate}}</p>
+        <p class="answer-correct-text" *ngIf="hasAnswered && isCorrect">{{i+1}}/{{questions.length}}
+          {{'CORRECT'|translate}}!</p>
+        <p class="answer-wrong-text" *ngIf="hasAnswered && !isCorrect">{{i+1}}/{{questions.length}}
+          {{'INCORRECT'|translate}}!</p>
       </div>
 
       <ion-list radio-group>
@@ -51,15 +53,15 @@
       </ion-list>
 
       <button ion-button (click)="nextQuestion()" class="next-button" [disabled]="!hasAnswered">
-        Next
+        {{'NEXT'|translate}}
       </button>
 
     </ion-slide>
 
     <ion-slide>
-      <h2>Final Score: {{score}}</h2>
+      <h2>{{'FINALSCORE'|translate}}: {{score}}</h2>
 
-      <button (click)="restartQuiz()" ion-button full color="primary">Start Again</button>
+      <button (click)="restartQuiz()" ion-button full color="primary">{{'STARTAGAIN'|translate}}</button>
 
     </ion-slide>
 

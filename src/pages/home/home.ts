@@ -5,11 +5,12 @@ import {NewCatalogPage} from "../new-catalog/new-catalog";
 import {CatalogPage} from "../catalog/catalog";
 import {GamePage} from "../game/game";
 import {Catalog} from "../../model/catalog.model";
+import {TranslateService} from "ng2-translate";
 
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
   private catalogs: any[] = [];
@@ -21,7 +22,8 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               private catalogsService: CatalogsService,
               private catalogService: CatalogsService,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private translate: TranslateService) {
   }
 
   ionViewWillEnter() {
@@ -83,17 +85,17 @@ export class HomePage {
 
   showConfirm(catalogName) {
     let confirm = this.alertCtrl.create({
-      title: 'Delete',
-      message: "Are you sure to delete catalog " + catalogName + "? It may contain words",
+      title: this.translate.instant("DELETE"),
+      message: this.translate.instant("CONFIRMDELETECATALOG") + catalogName + this.translate.instant("CONFIRMDELETECATALOG2"),
       buttons: [
         {
-          text: 'cancel',
+          text: this.translate.instant("CANCELBTN"),
           handler: () => {
             // alert('Disagree clicked');
           }
         },
         {
-          text: 'delete',
+          text: this.translate.instant("DELETEBTN"),
           handler: () => {
             this.catalogService.deleteCatalog(catalogName);
             this.navCtrl.setRoot(this.navCtrl.getActive().component);

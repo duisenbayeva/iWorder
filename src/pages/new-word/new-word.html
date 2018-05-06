@@ -5,7 +5,9 @@
         <ion-icon name="trash"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>{{create? "New Word":"Edit Word"}}</ion-title>
+    <ion-title>{{create? ('NEWWORD'|translate)
+      :('EDITWORD'|translate)}}
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -34,10 +36,10 @@
         <ion-card-content *ngIf="!word.recordFileName">
           <ion-card-title>
             <button ion-button primary (click)="stopRecord()" *ngIf="recording">
-              <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;Stop Record
+              <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;{{'STOPRECORD'|translate}}
             </button>
             <button ion-button primary (click)="startRecord()" *ngIf="!recording">
-              <ion-icon name="mic"></ion-icon>&nbsp;&nbsp;Start Record
+              <ion-icon name="mic"></ion-icon>&nbsp;&nbsp;{{'STARTRECORD'|translate}}
             </button>
           </ion-card-title>
         </ion-card-content>
@@ -54,7 +56,9 @@
       </ion-card>
 
 
-      <button ion-button block type="submit" [disabled]="!f.valid">{{create? "add":"edit"}}</button>
+      <button ion-button block type="submit" [disabled]="!f.valid">{{create? ('ADDBTN'|translate)
+        :('EDITBTN'|translate)}}
+      </button>
     </form>
   </ion-list>
 

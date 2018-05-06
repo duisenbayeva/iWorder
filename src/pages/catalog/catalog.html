@@ -44,9 +44,11 @@
   </ion-list>
   <div class="word-container word-container-add" *ngIf="words.length==0">
     <div class="word-label">
-      Add your first word
+      {{'ADDFIRSTWORD'| translate}}
     </div>
-    <button ion-button block class="word-open-btn word-add-button" (click)="addWord(fab)">add</button>
+    <button ion-button block class="word-open-btn word-add-button" (click)="addWord(fab)">{{'ADDBTN'|
+      translate}}
+    </button>
   </div>
 
 

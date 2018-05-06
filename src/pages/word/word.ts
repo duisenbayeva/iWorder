@@ -5,6 +5,7 @@ import {CatalogsService} from "../../services/catalogs.service";
 
 import {Media, MediaObject} from "@ionic-native/media";
 import {File} from "@ionic-native/file";
+import {TranslateService} from "ng2-translate";
 
 @IonicPage()
 @Component({
@@ -24,7 +25,8 @@ export class WordPage {
               public alertCtrl: AlertController,
               private media: Media,
               private file: File,
-              public platform: Platform) {
+              public platform: Platform,
+              private translate: TranslateService) {
   }
 
   ionViewWillEnter() {
@@ -42,17 +44,17 @@ export class WordPage {
 
   showConfirm(word) {
     let confirm = this.alertCtrl.create({
-      title: 'Delete',
-      message: "Are you sure to delete word " + word.word + "?",
+      title: this.translate.instant("DELETE"),
+      message: this.translate.instant("CONFIRMDELETEWORD") + word.word + "?",
       buttons: [
         {
-          text: 'cancel',
+          text: this.translate.instant("CANCELBTN"),
           handler: () => {
             // alert('Disagree clicked');
           }
         },
         {
-          text: 'delete',
+          text: this.translate.instant("DELETEBTN"),
           handler: () => {
             this.catalogsService.deleteWord(word);
             this.navCtrl.pop();

@@ -1,7 +1,9 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{create? "New Catalog":"Edit Catalog"}}</ion-title>
+    <ion-title>{{create? ('NEWCATALOG'|translate)
+      :('EDITCATALOG'|translate)}}
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,7 +18,8 @@
         <ion-input type="text" name="catalogName" [(ngModel)]="catalogName" required></ion-input>
       </ion-item>
 
-      <button ion-button block type="submit" [disabled]="!f.valid">{{create? ('ADDBTN'|translate) :"edit"}}
+      <button ion-button block type="submit" [disabled]="!f.valid">{{create? ('ADDBTN'|translate)
+        :('EDITBTN'|translate)}}
       </button>
     </form>
   </ion-list>

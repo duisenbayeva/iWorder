@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {Word} from "../model/word.model";
 import {Catalog} from "../model/catalog.model";
 import {ToastController} from "ionic-angular";
+import {TranslateService} from "ng2-translate";
 
 @Injectable()
 export class CatalogsService {
@@ -10,7 +11,7 @@ export class CatalogsService {
   private catalogs: Catalog[] = [];
   private catalogs2: {} = {};
 
-  constructor(private storage: Storage, private toastCtrl: ToastController) {
+  constructor(private storage: Storage, private toastCtrl: ToastController, private translate: TranslateService) {
   }
 
   addCatalog(catalogName) {
@@ -21,10 +22,14 @@ export class CatalogsService {
       catalogs2[catalogName] = {"catalogName": catalogName, "wordList": {}};
       localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
       this.updateCatalogList();
-      this.presentToast("Catalog was successfully created");
+      this.translate.get('ADDCATALOGSUCCESS').subscribe((res: string) => {
+        this.presentToast(res);
+      });
       return;
     }
-    this.presentToast("Catalog was not created, some error occurred");
+    this.translate.get('ADDCATALOGERROR').subscribe((res: string) => {
+      this.presentToast(res);
+    });
   }
 
   getCatalogs() {
@@ -48,9 +53,13 @@ export class CatalogsService {
       delete catalogs2[catalogName];
       localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
       this.updateCatalogList();
-      this.presentToast("Catalog was successfully edited");
+      this.translate.get('EDITCATALOGSUCCESS').subscribe((res: string) => {
+        this.presentToast(res);
+      });
     } else {
-      this.presentToast("Catalog was not found");
+      this.translate.get('EDITCATALOGERROR').subscribe((res: string) => {
+        this.presentToast(res);
+      });
     }
   }
 
@@ -63,11 +72,15 @@ export class CatalogsService {
         catalogs2[word.catalog].wordList[word.word] = word;
         localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
         this.updateCatalogList();
-        this.presentToast("Word was successfully created");
+        this.translate.get('ADDWORDSUCCESS').subscribe((res: string) => {
+          this.presentToast(res);
+        });
         return;
       }
     }
-    this.presentToast("Word was not added, some error occurred");
+    this.translate.get('ADDWORDERROR').subscribe((res: string) => {
+      this.presentToast(res);
+    });
   }
 
   editWord(word: Word, newWord: Word) {
@@ -80,11 +93,15 @@ export class CatalogsService {
         catalogs2[newWord.catalog].wordList[newWord.word] = newWord;
         localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
         this.updateCatalogList();
-        this.presentToast("Word was successfully edited");
+        this.translate.get('EDITWORDSUCCESS').subscribe((res: string) => {
+          this.presentToast(res);
+        });
         return;
       }
     }
-    this.presentToast("Word was not edited, some error occurred");
+    this.translate.get('EDITWORDERROR').subscribe((res: string) => {
+      this.presentToast(res);
+    });
 
   }
 
@@ -95,10 +112,14 @@ export class CatalogsService {
       delete catalogs2[catalogName];
       localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
       this.updateCatalogList();
-      this.presentToast("Catalog was deleted successfully");
+      this.translate.get('DELETECATALOGSUCCESS').subscribe((res: string) => {
+        this.presentToast(res);
+      });
       return;
     }
-    this.presentToast("Catalog was not deleted, some error occurred");
+    this.translate.get('DELETECATALOGERROR').subscribe((res: string) => {
+      this.presentToast(res);
+    });
   }
 
   getCatalog(catalogName) {
@@ -121,11 +142,15 @@ export class CatalogsService {
         delete catalogs2[word.catalog].wordList[word.word];
         localStorage.setItem('catalogsMap', JSON.stringify(catalogs2));
         this.updateCatalogList();
-        this.presentToast("Word was deleted successfully");
+        this.translate.get('DELETEWORDSUCCESS').subscribe((res: string) => {
+          this.presentToast(res);
+        });
         return;
       }
     }
-    this.presentToast("Word was not deleted, some error occurred");
+    this.translate.get('DELETEWORDERROR').subscribe((res: string) => {
+      this.presentToast(res);
+    });
   }
 
   updateCatalogList = function () {
