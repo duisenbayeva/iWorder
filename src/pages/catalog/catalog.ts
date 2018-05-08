@@ -1,10 +1,19 @@
 import {Component, ViewChild} from "@angular/core";
-import {AlertController, FabContainer, IonicPage, ModalController, NavController, NavParams} from "ionic-angular";
+import {
+  AlertController,
+  FabContainer,
+  IonicPage,
+  ModalController,
+  NavController,
+  NavParams,
+  ToastController
+} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewWordPage} from "../new-word/new-word";
 import {Word} from "../../model/word.model";
 import {WordPage} from "../word/word";
 import {GamePage} from "../game/game";
+import {TranslateService} from "ng2-translate";
 
 @IonicPage()
 @Component({
@@ -23,14 +32,20 @@ export class CatalogPage {
               public navParams: NavParams,
               private catalogService: CatalogsService,
               private modalCtrl: ModalController,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private toastCtrl: ToastController,
+              private translate: TranslateService) {
   }
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter CatalogPage', this.navParams);
     this.name = this.navParams.get('catalog').catalogName;
     // this.words = this.navParams.get('catalog').wordList;
-    this.words = this.catalogService.getCatalog(this.navParams.get('catalog').catalogName).wordList;
+    let catalog;
+    if (catalog = this.catalogService.getCatalog(this.navParams.get('catalog').catalogName)) {
+      console.log("catalog!!!", catalog);
+      this.words = catalog.wordList;
+    }
   }
 
   ionViewWillLeave() {
@@ -86,25 +101,39 @@ export class CatalogPage {
   openGame(fab: FabContainer) {
     fab.close();
     console.log(this.name, this.words);
-    if (this.words.length < 3)
-      console.log("You should have 3 words in the catalog to start game session");
+    if (this.words.length < 5)
+      this.presentToast(this.translate.instant("MINIMUMWORDSCOUNTMESSAGE"));
     else
       this.navCtrl.push(GamePage, {catalogName: this.name, wordList: this.words});
   }
 
+  presentToast(toastMessage) {
+    let toast = this.toastCtrl.create({
+      message: toastMessage,
+      duration: 4000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
   showConfirm(word) {
     let confirm = this.alertCtrl.create({
-      title: 'Delete',
-      message: "Are you sure to delete word " + word.word + "?",
+      title: this.translate.instant("DELETE"),
+      message: this.translate.instant("CONFIRMDELETEWORD") + word.word + "?",
       buttons: [
         {
-          text: 'cancel',
+          text: this.translate.instant("CANCELBTN"),
           handler: () => {
             // alert('Disagree clicked');
           }
         },
         {
-          text: 'delete',
+          text: this.translate.instant("DELETEBTN"),
           handler: () => {
             this.catalogService.deleteWord(word);
             this.ionViewWillEnter();

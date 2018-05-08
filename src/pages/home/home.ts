@@ -1,5 +1,5 @@
 import {Component, ViewChild} from "@angular/core";
-import {AlertController, FabContainer, NavController} from "ionic-angular";
+import {AlertController, FabContainer, IonicPage, NavController} from "ionic-angular";
 import {CatalogsService} from "../../services/catalogs.service";
 import {NewCatalogPage} from "../new-catalog/new-catalog";
 import {CatalogPage} from "../catalog/catalog";
@@ -7,7 +7,7 @@ import {GamePage} from "../game/game";
 import {Catalog} from "../../model/catalog.model";
 import {TranslateService} from "ng2-translate";
 
-
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -27,6 +27,13 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    if (localStorage.getItem('defaultLang')) {
+      this.translate.setDefaultLang(localStorage.getItem('defaultLang'));
+      this.translate.use(localStorage.getItem('defaultLang'));
+    } else {
+      this.translate.setDefaultLang('en');
+      this.translate.use('en');
+    }
     this.catalogsService.getCatalogs().then(
       (catalogs) => this.catalogs = catalogs
     );

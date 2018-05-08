@@ -42,5 +42,6 @@
   "DELETEWORDERROR": "Слово не было удалено, произошла ошибка",
   "CONFIRMDELETECATALOG": "Вы точно хотите удалить каталог ",
   "CONFIRMDELETECATALOG2": "? Он, возможно, содержит слова",
-  "CONFIRMDELETEWORD": "Вы точно хотите удалить слово "
+  "CONFIRMDELETEWORD": "Вы точно хотите удалить слово ",
+  "MINIMUMWORDSCOUNTMESSAGE": "У вас должно быть минимум 5 слов чтобы начать играть"
 }

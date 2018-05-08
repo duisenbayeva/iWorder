@@ -6,7 +6,6 @@ import {StatusBar} from "@ionic-native/status-bar";
 import {IonicStorageModule} from "@ionic/storage";
 
 import {MyApp} from "./app.component";
-import {HomePage} from "../pages/home/home";
 import {NewCatalogPage} from "../pages/new-catalog/new-catalog";
 import {NewWordPage} from "../pages/new-word/new-word";
 import {CatalogPage} from "../pages/catalog/catalog";
@@ -23,7 +22,6 @@ import {File} from "@ionic-native/file";
 
 import {Http, HttpModule} from "@angular/http";
 import {TranslateLoader, TranslateModule, TranslateStaticLoader} from "ng2-translate";
-import {ChooseLanguagePage} from "../pages/choose-language/choose-language";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, './assets/i18n', '.json');
@@ -32,10 +30,10 @@ export function createTranslateLoader(http: Http) {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage, NewCatalogPage,
+    NewCatalogPage,
     NewWordPage, CatalogPage,
     GamePage, WordPage,
-    QuizPage, ChooseLanguagePage,
+    QuizPage,
     FlashCardComponent
   ],
   imports: [
@@ -52,10 +50,10 @@ export function createTranslateLoader(http: Http) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage, NewCatalogPage,
+    NewCatalogPage,
     NewWordPage, CatalogPage,
     GamePage, WordPage,
-    QuizPage, ChooseLanguagePage
+    QuizPage
   ],
   providers: [
     StatusBar,

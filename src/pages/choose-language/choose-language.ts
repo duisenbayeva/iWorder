@@ -20,12 +20,14 @@ export class ChooseLanguagePage {
   english() {
     this.translate.setDefaultLang('en');
     this.translate.use('en');
-    this.navCtrl.push(HomePage);
+    localStorage.setItem('defaultLang', 'en');
+    this.navCtrl.setRoot('HomePage');
   }
 
   russian() {
     this.translate.setDefaultLang('ru');
     this.translate.use('ru');
-    this.navCtrl.push(HomePage);
+    localStorage.setItem('defaultLang', 'ru');
+    this.navCtrl.setRoot('HomePage');
   }
 }

@@ -42,5 +42,6 @@
   "DELETEWORDERROR": "Word was not deleted, some error occurred",
   "CONFIRMDELETECATALOG": "Are you sure to delete catalog ",
   "CONFIRMDELETECATALOG2": "? It may contain words",
-  "CONFIRMDELETEWORD": "Are you sure to delete word "
+  "CONFIRMDELETEWORD": "Are you sure to delete word ",
+  "MINIMUMWORDSCOUNTMESSAGE": "You should have at least 5 words in the catalog to start game session"
 }
