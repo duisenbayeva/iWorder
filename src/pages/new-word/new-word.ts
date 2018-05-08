@@ -82,6 +82,8 @@ export class NewWordPage {
 
 
   startRecord() {
+    event.preventDefault();
+    event.stopPropagation();
     if (this.platform.is('ios')) {
       this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() + new Date().getHours() + new Date().getMinutes() + new Date().getSeconds() + '.3gp';
       this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + this.fileName;
@@ -96,12 +98,16 @@ export class NewWordPage {
   }
 
   stopRecord() {
+    // event.preventDefault();
+    // event.stopPropagation();
     this.audio.stopRecord();
     this.word.recordFileName = this.fileName;
     this.recording = false;
   }
 
   playAudio(file) {
+    // event.preventDefault();
+    // event.stopPropagation();
     if (this.platform.is('ios')) {
       this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + file;
       this.audio = this.media.create(this.filePath);

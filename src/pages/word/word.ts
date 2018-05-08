@@ -66,6 +66,8 @@ export class WordPage {
   }
 
   playAudio(file) {
+    // event.preventDefault();
+    // event.stopPropagation();
     if (this.platform.is('ios')) {
       this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + file;
       this.audio = this.media.create(this.filePath);

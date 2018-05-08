@@ -33,8 +33,8 @@
       </ion-item>
 
       <ion-card>
-        <ion-card-content *ngIf="!word.recordFileName">
-          <ion-card-title>
+        <ion-card-content>
+          <ion-card-title *ngIf="!word.recordFileName">
             <button ion-button primary (click)="stopRecord()" *ngIf="recording">
               <ion-icon name="mic-off"></ion-icon>&nbsp;&nbsp;{{'STOPRECORD'|translate}}
             </button>
@@ -42,16 +42,14 @@
               <ion-icon name="mic"></ion-icon>&nbsp;&nbsp;{{'STARTRECORD'|translate}}
             </button>
           </ion-card-title>
-        </ion-card-content>
-
-        <ion-card-content *ngIf="word.recordFileName">
-          <p>{{word.recordFileName}}</p>
-          <button ion-button clear item-end large (click)="playAudio(word.recordFileName)">
-            <ion-icon name="play"></ion-icon>
-          </button>
-          <button ion-button icon-only (click)="onDeleteWordRecord()">
-            <ion-icon name="trash"></ion-icon>
-          </button>
+          <ion-card-title *ngIf="word.recordFileName">
+            <button ion-button primary (click)="playAudio(word.recordFileName)">
+              <ion-icon name="play"></ion-icon>&nbsp;&nbsp;{{word.recordFileName}}
+            </button>
+            <button ion-button icon-only (click)="onDeleteWordRecord()">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+          </ion-card-title>
         </ion-card-content>
       </ion-card>
 

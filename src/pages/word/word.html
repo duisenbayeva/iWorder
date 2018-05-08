@@ -31,13 +31,13 @@
       <ion-label>{{'NOTE'|translate}}: {{word.note}}</ion-label>
     </ion-item>
 
-    <ion-card-content *ngIf="word.recordFileName">
-      <p>{{word.recordFileName}}</p>
-      <button ion-button clear item-end large (click)="playAudio(word.recordFileName)">
-        <ion-icon name="play"></ion-icon>
-      </button>
-
-    </ion-card-content>
+    <ion-card>
+      <ion-card-content *ngIf="word.recordFileName">
+        <button ion-button primary (click)="playAudio(word.recordFileName)">
+          <ion-icon name="play"></ion-icon>&nbsp;&nbsp;{{word.recordFileName}}
+        </button>
+      </ion-card-content>
+    </ion-card>
 
     <button ion-button block (click)="dismiss()">{{'BACKBTN'|translate}}</button>
   </ion-list>

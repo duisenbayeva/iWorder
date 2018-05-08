@@ -11,7 +11,7 @@ export class MyApp {
   rootPage: any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService) {
-    if (translate.getDefaultLang()) {
+    if (localStorage.getItem('defaultLang')) {
       this.rootPage = 'HomePage';
     } else {
       this.rootPage = 'ChooseLanguagePage';
