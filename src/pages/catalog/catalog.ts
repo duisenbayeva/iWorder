@@ -91,7 +91,7 @@ export class CatalogPage {
   openWord(word: Word, fab: FabContainer) {
     console.log("openWord", word);
     fab.close();
-    let wordModal = this.modalCtrl.create(WordPage, {catalogName: this.name, word: word});
+    let wordModal = this.modalCtrl.create(WordPage, {catalogName: this.name, word: word}, {cssClass: "mymodal"});
     wordModal.present();
     wordModal.onDidDismiss(() => {
       this.ionViewWillEnter();
