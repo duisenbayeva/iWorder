@@ -23,6 +23,7 @@ import {File} from "@ionic-native/file";
 
 import {Http, HttpModule} from "@angular/http";
 import {TranslateLoader, TranslateModule, TranslateStaticLoader} from "ng2-translate";
+import {ChooseLanguagePage} from "../pages/choose-language/choose-language";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, './assets/i18n', '.json');
@@ -34,7 +35,7 @@ export function createTranslateLoader(http: Http) {
     HomePage, NewCatalogPage,
     NewWordPage, CatalogPage,
     GamePage, WordPage,
-    QuizPage,
+    QuizPage, ChooseLanguagePage,
     FlashCardComponent
   ],
   imports: [
@@ -54,7 +55,7 @@ export function createTranslateLoader(http: Http) {
     HomePage, NewCatalogPage,
     NewWordPage, CatalogPage,
     GamePage, WordPage,
-    QuizPage
+    QuizPage, ChooseLanguagePage
   ],
   providers: [
     StatusBar,

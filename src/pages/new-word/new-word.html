@@ -18,17 +18,17 @@
     <form (ngSubmit)="create? onAddWord(f.value): onEditWord(f.value)" #f="ngForm">
 
       <ion-item>
-        <ion-label floating>New word</ion-label>
+        <ion-label floating>{{'WORD'|translate}}</ion-label>
         <ion-input type="text" name="newWord" [(ngModel)]="word.word" required></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Translation</ion-label>
+        <ion-label floating>{{'TRANSLATION'|translate}}</ion-label>
         <ion-input type="text" name="translation" [(ngModel)]="word.translation" required></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Note</ion-label>
+        <ion-label floating>{{'NOTE'|translate}}</ion-label>
         <ion-input type="text" name="note" [(ngModel)]="word.note"></ion-input>
       </ion-item>
 
