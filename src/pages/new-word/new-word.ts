@@ -119,6 +119,12 @@ export class NewWordPage {
   onDeleteWordRecord() {
     console.log("delete record", this.word.recordFileName);
     this.word.recordFileName = "";
+    if (this.platform.is('ios')) {
+      this.file.removeFile(this.file.documentsDirectory.replace(/file:\/\//g, ''), this.fileName);
+    } else if (this.platform.is('android')) {
+      this.file.removeFile(this.file.externalDataDirectory.replace(/file:\/\//g, ''), this.fileName);
+    }
+
   }
 
 }
