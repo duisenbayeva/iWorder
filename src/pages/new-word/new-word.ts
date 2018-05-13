@@ -4,6 +4,7 @@ import {CatalogsService} from "../../services/catalogs.service";
 import {Word} from "../../model/word.model";
 import {Media, MediaObject} from "@ionic-native/media";
 import {File} from "@ionic-native/file";
+import {TranslateService} from "ng2-translate";
 
 @IonicPage()
 @Component({
@@ -27,7 +28,8 @@ export class NewWordPage {
               public alertCtrl: AlertController,
               private media: Media,
               private file: File,
-              public platform: Platform) {
+              public platform: Platform,
+              private translate: TranslateService) {
   }
 
   ionViewWillEnter() {
@@ -59,17 +61,17 @@ export class NewWordPage {
 
   showConfirm(word) {
     let confirm = this.alertCtrl.create({
-      title: 'Delete',
-      message: "Are you sure to delete word " + word.word + "?",
+      title: this.translate.instant("DELETE"),
+      message: this.translate.instant("CONFIRMDELETEWORD") + word.word + "?",
       buttons: [
         {
-          text: 'cancel',
+          text: this.translate.instant("CANCELBTN"),
           handler: () => {
             // alert('Disagree clicked');
           }
         },
         {
-          text: 'delete',
+          text: this.translate.instant("DELETEBTN"),
           handler: () => {
             this.catalogsService.deleteWord(word);
             this.navCtrl.pop();
@@ -98,29 +100,25 @@ export class NewWordPage {
   }
 
   stopRecord() {
-    // event.preventDefault();
-    // event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
     this.audio.stopRecord();
     this.word.recordFileName = this.fileName;
     this.recording = false;
   }
 
   playAudio(file) {
-    // event.preventDefault();
-    // event.stopPropagation();
-    if (this.platform.is('ios')) {
-      this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + file;
-      this.audio = this.media.create(this.filePath);
-    } else if (this.platform.is('android')) {
-      this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + file;
-      this.audio = this.media.create(this.filePath);
-    }
+    event.preventDefault();
+    event.stopPropagation();
+
+    console.log("play audio");
     this.audio.play();
     this.audio.setVolume(0.8);
   }
 
   onDeleteWordRecord() {
     console.log("delete record", this.word.recordFileName);
+    this.word.recordFileName = "";
   }
 
 }
