@@ -22,10 +22,24 @@ import {File} from "@ionic-native/file";
 
 import {Http, HttpModule} from "@angular/http";
 import {TranslateLoader, TranslateModule, TranslateStaticLoader} from "ng2-translate";
+import {FirestoreProvider} from "../providers/firestore/firestore";
+import {HttpClientModule} from "@angular/common/http";
+import * as firebase from "firebase";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, './assets/i18n', '.json');
 }
+
+var firebaseConfig = {
+  apiKey: "AIzaSyC8EakuoSZGOPVe9FCE8lzFy5EAhezszOM",
+  authDomain: "worder-5c89a.firebaseapp.com",
+  databaseURL: "https://worder-5c89a.firebaseio.com",
+  projectId: "worder-5c89a",
+  storageBucket: "worder-5c89a.appspot.com",
+  messagingSenderId: "846607388450"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -41,6 +55,7 @@ export function createTranslateLoader(http: Http) {
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     HttpModule,
+    HttpClientModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
@@ -62,7 +77,8 @@ export function createTranslateLoader(http: Http) {
     CatalogsService,
     QuizService,
     Media,
-    File
+    File,
+    FirestoreProvider
   ]
 })
 export class AppModule {

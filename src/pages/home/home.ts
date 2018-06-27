@@ -6,6 +6,7 @@ import {CatalogPage} from "../catalog/catalog";
 import {GamePage} from "../game/game";
 import {Catalog} from "../../model/catalog.model";
 import {TranslateService} from "ng2-translate";
+import {FirestoreProvider} from "../../providers/firestore/firestore";
 
 @IonicPage()
 @Component({
@@ -17,14 +18,20 @@ export class HomePage {
   private editMode: boolean = false;
   private deleteMode: boolean = false;
 
+  catalogList: any;
+
+
   @ViewChild(FabContainer) fab: FabContainer;
 
   constructor(public navCtrl: NavController,
               private catalogsService: CatalogsService,
               private catalogService: CatalogsService,
               public alertCtrl: AlertController,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private firestore: FirestoreProvider) {
+
   }
+
 
   ionViewWillEnter() {
     if (localStorage.getItem('defaultLang')) {
@@ -44,6 +51,13 @@ export class HomePage {
     this.fab.close();
     this.editMode = false;
     this.deleteMode = false;
+  }
+
+  ionViewDidLoad() {
+    this.firestore.getAllDocuments("word_catalogs").then((e) => {
+      this.catalogList = e;
+      console.log("catalogList from Firebase", this.catalogList);
+    });
   }
 
   createCatalog(fab: FabContainer) {
