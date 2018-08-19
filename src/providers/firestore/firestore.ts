@@ -13,6 +13,7 @@ export class FirestoreProvider {
 
   private db: any;
 
+
   constructor() {
     this.db = firebase.firestore();
     console.log('Hello FirestoreProvider Provider');
